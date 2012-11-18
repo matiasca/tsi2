@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear"
+					href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+		<pm:content>
+			<h:form>
+				<p:panel header="Tarea">
+					<h:panelGrid columns="2">
+						<pm:field>
+							<h:outputLabel value="Cliente: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.movimientoAutor}" />
+						</pm:field>
+
+						<pm:field>
+							<h:outputLabel value="Usuario: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.usuario}" />
+						</pm:field>
+
+						<pm:field>
+							<h:outputLabel value="Asunto: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.asunto}" />
+						</pm:field>
+
+						<pm:field>
+							<h:outputLabel value="Fecha: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.fecha}" />
+						</pm:field>
+
+						<pm:field>
+							<h:outputLabel value="Estado: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.estado}" />
+						</pm:field>
+
+						<pm:field>
+							<h:outputLabel value="Prioridad: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.prioridad}" />
+						</pm:field>
+
+						<pm:field>
+							<h:outputLabel value="Grupo: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.grupo}" />
+						</pm:field>
+
+						<pm:field>
+							<h:outputLabel value="Responsable: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.responsable}" />
+						</pm:field>
+					</h:panelGrid>
+					<pm:field>
+						<h:outputLabel value="Descripcion: " />
+					</pm:field>
+					<pm:field>
+						<h:outputText value="#{detalleTareaBean.descripcion}" />
+					</pm:field>
+				</p:panel>
+				<p:separator></p:separator>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Ver Historial"></p:commandButton>
+					<p:commandButton value="Ver Solucion"></p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</pm:content>
+	</pm:page>
+</f:view>

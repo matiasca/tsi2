@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Baja Cliente</ui:define>
+	<ui:define name="body">
+
+	<script type="text/javascript">
+    function handleDialogSubmit(xhr, status, args) {
+        if (args.validationFailed) {
+        	dialogoEliminarCliente.show();
+        } else {
+        	dialogoEliminarCliente.hide();
+        }
+    }
+	</script>
+		<h:form id="idform">
+		
+		
+
+			<p:growl id="growlCliente" />
+
+			<h:panelGrid id="panelf" columns="1" cellpadding="50">
+				<p:dataTable id="dataTable" var="cli"
+					value="#{bajaClienteBean.listaClientes}" rowKey="#{cli}"
+					selectionMode="single" selection="#{bajaClienteBean.nombreCliente}"
+					emptyMessage="No se encontraron resultados">
+
+					<p:ajax event="rowSelect" 
+						oncomplete="dialogoEliminarCliente.show()"
+						 />
+
+					<p:column headerText="Cliente" filterBy="#{cli}">
+						<h:outputText value="#{cli}" />
+					</p:column>
+
+					
+
+				</p:dataTable>
+			</h:panelGrid>
+
+			<p:confirmDialog id="dialogoEliminarCliente"
+				message="¿Esta seguro que desea dar de baja al Cliente seleccionado?"
+				header="Baja de Cliente" severity="alert" widgetVar="dialogoEliminarCliente">
+				<p:growl id="messages" />
+				<p:commandButton id="confirm" value="Aceptar" update="messages dataTable"
+					oncomplete="dialogoEliminarCliente.hide()"
+					actionListener="#{bajaClienteBean.borrarCliente()}" />
+				
+				<p:commandButton id="decline" value="Cancelar"
+					onclick="dialogoEliminarCliente.hide()" type="button" />
+
+			</p:confirmDialog>
+
+
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

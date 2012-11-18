@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear" href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+		<pm:content>
+			<p:panel header="Solución ">
+				<h:panelGrid columns="2">
+					<pm:field>
+						<h:outputLabel value="Responsable: "/>
+					</pm:field>
+					<pm:field>
+						<h:outputLabel value=" #{detalleTareaBean.responsable} - este dato habria que pedirselo al finalizarTareaBean tambien y no esta, habria que agregarlo" />
+					</pm:field>
+				</h:panelGrid>
+				<pm:field>
+					<h:outputLabel value="Descripcion de la solución: " />
+				</pm:field>
+				<pm:field>	
+					<h:outputText value="#{finalizarTareaBean.solucion}" />
+				</pm:field>
+			</p:panel>
+			<p:separator></p:separator>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Ver Historial"></p:commandButton>			
+				<p:commandButton value="Tareas Finalizadas"></p:commandButton>
+			</h:panelGrid>
+		</pm:content>
+	</pm:page>
+</f:view>

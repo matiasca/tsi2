@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA" id="solicitudesTecnico"> 
+		<!-- Solcitudes pendientes y finalizadas-->		
+		<pm:view id="solicitudesPendientesyFinalizadas" swatch="c">
+            <pm:header title="Solicitudes">
+				<f:facet name="right">
+				 	<p:commandButton value="Salir" action="#{loginBean.cerrarSesion}" />
+				 </f:facet>
+				<pm:navBar>
+					<p:button value="tareas" icon="home" href="#main?reverse=true" update="pm:pagina" styleClass="ui-btn-active"/>
+					<p:button value="Nueva" icon="plus" href="tecnicoNuevaTarea.xhtml" update="pm:pagina" styleClass="ui-btn-inactive"/>
+					<p:button value="CMDB" icon="plus" href="tecnicoGestionCMDB.xhtml" update="pm:pagina" styleClass="ui-btn-inactive"/>
+				</pm:navBar>
+			</pm:header>
+
+            <pm:content>
+                <h:form id="misSolicitudesForm">
+                	<h:outputText value="No tiene incidentes"
+							rendered="#{empty tablaIncidenteBean.incidentes}"
+							style="font-size:20px;" />
+                    <p:dataList  value="#{tablaIncidenteBean.incidentes}" var="inci"
+                    				rendered="#{not empty tablaIncidenteBean.incidentes}">
+                        <p:column>
+                            <p:commandLink value="#{inci.asunto}" update=":solicitudForm" action="pm:vistaSolicitud">
+                                <f:setPropertyActionListener value="#{inci}" target="#{tablaIncidenteBean.incidenteSeleccionado}" />
+                            </p:commandLink>
+                       	</p:column>
+		           </p:dataList>
+                </h:form>
+            </pm:content>
+        </pm:view>
+        
+        <!-- Solicitud pendiente Seleccionada -->
+        <pm:view id="vistaSolicitudPendiente" swatch="c">
+            <pm:header title="Mis Solicitudes">
+				<f:facet name="right">
+				 	<p:commandButton value="Salir" action="#{loginBean.cerrarSesion}" />
+				 </f:facet>
+				 <f:facet name="left">
+				 	<p:button value="Atras" icon="back" href="#misSolicitudes?reverse=true"/>
+		 		</f:facet>
+			</pm:header>
+
+            <pm:content>
+                <h:form id="solicitudForm">
+                	Solicitud:
+					<pm:field>
+						<h:outputLabel value="Asunto: " />
+						<h:outputLabel value="#{tablaIncidenteBean.incidenteSeleccionado.getAsunto()}" />
+					</pm:field>
+	
+					<!-- FECHA -->
+					<pm:field>
+						<h:outputLabel value="Fecha: " />
+						<h:outputLabel value="#{tablaIncidenteBean.incidenteSeleccionado.getFecha()}" />
+					</pm:field>
+	
+					<!-- ESTADO -->
+					<pm:field>
+						<h:outputLabel value="Estado: " />
+						<h:outputLabel value="#{tablaIncidenteBean.incidenteSeleccionado.getEstado()}" />
+					</pm:field>
+	
+					<!-- DESCRIPCION -->
+					<pm:field>
+						<h:outputLabel for="descripcion" value="Descripcion: " />
+						<h:outputText id="descripcion" value="#{tablaIncidenteBean.incidenteSeleccionado.getDescripcion()}" />
+					</pm:field>
+	
+					<p:separator /> 
+                   
+                </h:form>
+            </pm:content>
+        </pm:view>
+        
+        <!-- Vista Solicitud finalizada -->
+        <pm:view id="vistaSolicitudFinalizada" swatch="c">
+            <pm:header title="Mis Solicitudes">
+				<f:facet name="right">
+				 	<p:commandButton value="Salir" action="#{loginBean.cerrarSesion}" />
+				 </f:facet>
+				 <f:facet name="left">
+				 	<p:button value="Atras" icon="back" href="#solicitudesPendientesyFinalizadas?reverse=true"/>
+		 		</f:facet>
+			</pm:header>
+
+            <pm:content>
+				<h:form id="solicitudFinalizadaForm">
+					<p:panel header="Tarea: ">
+						<h:panelGrid columns="2">
+							<pm:field>
+								<h:outputLabel value="Cliente: " />
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="nombre del cliente"/> <!--  #{detalleTareaBean.cliente}" />-->
+							</pm:field>
+							
+							<pm:field>
+								<h:outputLabel value="Usuario: " />
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="nombre del usuario"/> <!-- #{detalleTareaBean.usuario}" /> -->
+							</pm:field>
+			
+							<pm:field>
+								<h:outputLabel value="Asunto: " />
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="Asunto de la tarea"/> <!-- #{detalleTareaBean.asunto}" /> -->
+							</pm:field>
+			
+							<pm:field>
+								<h:outputLabel value="Fecha: " />
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="fecha de la tarea"/> <!-- #{detalleTareaBean.fecha}"/> -->
+							</pm:field>
+							
+							<pm:field>
+								<h:outputLabel value="Estado: " />
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="estado de la tarea"/> <!--  #{detalleTareaBean.estado}" /> -->
+							</pm:field>
+							
+							<pm:field>
+								<h:outputLabel value="Prioridad: " />
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="prioridad de la tarea"/> <!-- #{detalleTareaBean.prioridad}" /> -->
+							</pm:field>
+							
+							<pm:field>
+								<h:outputLabel value="Grupo: " />
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="grupo de la tarea"/> <!-- #{detalleTareaBean.grupo}" /> -->
+							</pm:field>
+							
+							<pm:field>
+								<h:outputLabel value="Responsable: " />
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="responsable de la tarea"/> <!-- #{detalleTareaBean.responsable}" /> -->
+							</pm:field>
+						</h:panelGrid>
+						<pm:field>
+							<h:outputLabel for="descripcion" value="Descripcion: " />
+						</pm:field>
+						<pm:field>	
+							<h:outputText value="descripcion de la tarea"/> <!-- #{detalleTareaBean.descripcion}" />  -->
+						</pm:field>
+					</p:panel>
+					<p:separator></p:separator>
+				</h:form>	
+			</pm:content>
+			<pm:footer>
+				<f:facet name="right">
+				 	<p:button value="Historial" icon="home" href="#HistorialTarea" update=":HistorialForm"/>
+				 </f:facet>
+				 <f:facet name="left">
+				 	<p:button value="Solucion" icon="plus" href="#SolucionTarea" update=":SolucionForm"/>
+		 		</f:facet>
+			</pm:footer>
+        </pm:view>
+		
+		<!-- Solucion Tarea Elegida -->
+		<f:view id="SolucionTarea">
+			<pm:header title="ACCSA">
+				<f:facet name="left">
+					<p:button value="Atras" icon="back" href="#main?reverse=true" />
+				</f:facet>
+				<f:facet name="right">
+					<p:button value="Cerrar Sesion" icon="gear" href="#main?reverse=true" />
+				</f:facet>
+			</pm:header>
+			<pm:content>
+				<h:form id="SolucionForm">
+					<p:panel header="Solución ">
+						<h:panelGrid columns="2">
+							<pm:field>
+								<h:outputLabel value="Responsable: "/>
+							</pm:field>
+							<pm:field>
+								<h:outputLabel value="nombre del responsable"/> <!--  #{detalleTareaBean.responsable}" />-->
+							</pm:field>
+						</h:panelGrid>
+						<pm:field>
+							<h:outputLabel for="descripcion" value="Descripcion de la solución: " />
+						</pm:field>
+						<pm:field>	
+							<h:outputText value="descripcion de la tarea"/> <!-- #{detalleTareaBean.descripcion}" />  -->
+						</pm:field>
+					</p:panel>
+					<p:separator></p:separator>
+					<h:panelGrid columns="2">
+						<p:commandButton value="Ver Historial"></p:commandButton>			
+						<p:commandButton value="Tareas Finalizadas"></p:commandButton>
+					</h:panelGrid>
+					
+				</h:form>
+			</pm:content>
+			<pm:footer>
+				<f:facet name="right">
+				 	<p:button value="Detalle" icon="home" href="#vistaSolicitudFinalizada" update=":solicitudFinalizadaForm"/>
+				 </f:facet>
+				 <f:facet name="left">
+				 	<p:button value="Historial" icon="home" href="#HistorialTarea" update=":HistorialForm"/>
+				 </f:facet>
+			</pm:footer>
+		</f:view>
+		
+		<!-- Historial Tarea Elegida -->
+		<f:view id="HistorialTarea">
+			<pm:header title="ACCSA">
+				<f:facet name="left">
+					<p:button value="Atras" icon="back" href="#main?reverse=true" />
+				</f:facet>
+				<f:facet name="right">
+					<p:button value="Cerrar Sesion" icon="gear" href="#main?reverse=true" />
+				</f:facet>
+			</pm:header>
+			<pm:content>
+				<h:form id="HistorialForm">
+					
+				</h:form>
+			</pm:content>
+			<pm:footer>
+				<f:facet name="right">
+				 	<p:button value="Detalle" icon="home" href="#vistaSolicitudFinalizada" update=":solicitudFinalizadaForm"/>
+				 </f:facet>
+				 <f:facet name="left">
+				 	<p:button value="Solucion" icon="plus" href="#SolucionTarea" update=":SolucionForm"/>
+		 		</f:facet>
+			</pm:footer>
+		</f:view>
+		
+		
+		
+	</pm:page>
+</f:view>

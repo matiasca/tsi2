@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Crear Grupo</ui:define>
+	<ui:define name="body">
+		<script type="text/javascript">
+			function handleDrop(event, ui) {
+				ui.draggable.fadeOut(function() {$(this).fadeIn();});
+
+				$(this).droppable('disable');
+			}
+		</script>
+		<h:form id="grupoForm">
+
+
+			
+
+			<p:panel id="panelGrup" header="Nuevo Grupo"
+				style="margin-bottom:10px;">
+			<p:blockUI block="panelGrup" trigger="crearGrupoBtn">  
+			        Cargando<br />
+				<p:graphicImage value="/imagenes/ajax-loader.gif" />
+			</p:blockUI>
+				<h:panelGrid id="panelDatosGrupo" columns="2" cellpadding="15">
+					<h:outputLabel for="nombreGrupo" value="Nombre: *  "
+						style="font-weight:bold" />
+					<p:inputText id="nombreGrupo" value="#{tablaGrupoBean.nombre}"
+						styleClass="Name" required="true" style="width:250px"
+						requiredMessage="Debe ingresar un nombre para el grupo." />
+
+					<h:outputLabel for="adminNombre" value="Administrador: *  "
+						style="font-weight:bold" />
+					<p:selectOneMenu id="adminNombre" value="#{tablaGrupoBean.admin}"
+						effect="fade" var="admins" required="true" style="width:250px"
+						requiredMessage="Debe ingresar un administrador para el grupo.">
+						<f:selectItem itemLabel="Elija uno" itemValue="" />
+						<f:selectItems value="#{tablaGrupoBean.listarAdministradores()}"
+							var="admin1" itemLabel="#{admin1.nombre} - #{admin1.mail}"
+							itemValue="#{admin1.mail}" />
+
+					</p:selectOneMenu>
+				</h:panelGrid>
+
+				<p:fieldset id="tecnicosDispo" legend="Técnicos disponibles">
+					<p:outputPanel id="dropArea2">
+						<h:outputText value="No quedan mas tecnicos para agregar"
+							rendered="#{empty tablaGrupoBean.tecnicosSinGrupo}"
+							style="font-size:20px;" />
+
+						<p:dataTable id="tecDisponibles" var="tec"
+							value="#{tablaGrupoBean.tecnicosSinGrupo}"
+							rendered="#{not empty tablaGrupoBean.tecnicosSinGrupo}">
+							<p:column style="width:20px">
+								<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+								<p:draggable for="dragIcon" revert="true" />
+							</p:column>
+
+							<p:column headerText="Nombre">
+								<h:outputText value="#{tec.nombre}" />
+							</p:column>
+
+							<p:column headerText="Mail">
+								<h:outputText value="#{tec.mail}" />
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</p:fieldset>
+
+				<p:fieldset id="tecElegi" legend="Técnicos elegidos"
+					style="margin-top:20px">
+					<p:outputPanel id="dropArea">
+						<h:outputText value="Arrastre aqui los tecnicos"
+							rendered="#{empty tablaGrupoBean.dropeddtecnicosSinGrupo}"
+							style="font-size:20px;" />
+
+						<p:dataTable id="tecnicosElegidos" var="tec2"
+							value="#{tablaGrupoBean.dropeddtecnicosSinGrupo}"
+							rendered="#{not empty tablaGrupoBean.dropeddtecnicosSinGrupo}">
+							<p:column style="width:20px">
+								<h:outputText id="dragIcon2"
+									styleClass="ui-icon ui-icon-arrow-4" />
+								<p:draggable for="dragIcon2" revert="true" />
+							</p:column>
+							<p:column headerText="Nombre">
+								<h:outputText value="#{tec2.nombre}" />
+							</p:column>
+
+							<p:column headerText="Mail">
+								<h:outputText value="#{tec2.mail}" />
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</p:fieldset>
+
+				<p:droppable for="tecElegi" tolerance="touch"
+					activeStyleClass="ui-state-highlight" datasource="tecDisponibles"
+					onDrop="handleDrop">
+					<p:ajax listener="#{tablaGrupoBean.onTecDrop}"
+						update="dropArea dropArea2" />
+				</p:droppable>
+
+				<p:droppable for="tecnicosDispo" tolerance="touch"
+					activeStyleClass="ui-state-highlight" datasource="tecnicosElegidos"
+					onDrop="handleDrop">
+					<p:ajax listener="#{tablaGrupoBean.onTecDrop2}"
+						update="dropArea dropArea2" />
+				</p:droppable>
+
+				<p:growl id="growlGrupo" />
+				<p:commandButton id="crearGrupoBtn" value="Crear Grupo"
+					actionListener="#{tablaGrupoBean.crearGrupo}" update="growlGrupo panelGrup"
+					style="margin-top:5px" />
+
+			</p:panel>
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

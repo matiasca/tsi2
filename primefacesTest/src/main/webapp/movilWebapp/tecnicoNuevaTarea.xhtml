@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:header title="Nueva Tarea">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+		<pm:content>
+			<h:form id = "nuevaTareaForm">
+				
+								
+				<pm:field>
+
+					
+					<!-- CLiente, actualiza usuario -->
+					<h:outputLabel for="select1" value="Cliente: *"
+						style="font-weight:bold" />
+					<h:selectOneMenu id="select1" value="#{tareaBean.cliente}"
+						effect="fade" required="true"
+						requiredMessage="Debe ingresar un cliente." >
+						<f:selectItem itemLabel="Elija uno" itemValue="" />
+						<f:selectItems value="#{clienteBean.listarClientes()}" />
+						<p:ajax process="select1" update=":nuevaTareaForm" event="change" 
+								listener="#{tareaBean.listarUsuarios()}" />
+					</h:selectOneMenu>
+				</pm:field>
+				<pm:field>
+					<!-- Usuarios del cliente -->
+					<h:outputLabel for="usuario" value="Usuario: *"
+						style="font-weight:bold" />
+					<h:selectOneMenu id="usuario" value="#{tareaBean.usuario}"
+						effect="fade" required="true" var="users"
+						requiredMessage="Debe ingresar un usuario.">
+						<f:selectItem itemLabel="Elija uno" itemValue="" />
+						<f:selectItems value="#{tareaBean.listaUsuarios}" var="user"
+							itemLabel="#{user.nombre} - #{user.mail}"
+							itemValue="#{user.mail}" />
+								
+					</h:selectOneMenu>
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="grupo" value="Grupo:" style="font-weight:bold" />
+					<h:selectOneMenu id="grupo" value="#{tareaBean.grupo}">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems value="#{tareaBean.listarGrupos()}" />
+
+					</h:selectOneMenu>
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="responable" value="Responsable:"
+						style="font-weight:bold" />
+					<h:selectOneMenu id="responable" value="#{tareaBean.responsable}">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems
+							value="#{tareaBean.listarTecnicosAdministradoresSuper()}"
+							var="resp" itemLabel="#{resp.nombre} - #{resp.mail}"
+							itemValue="#{resp.mail}" />
+					</h:selectOneMenu>
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="prioridad" value="Prioridad: "
+						style="font-weight:bold" />
+					<h:selectOneMenu id="prioridad" value="#{tareaBean.prioridad}">
+						<f:selectItem itemLabel="Alta" itemValue="1" />
+						<f:selectItem itemLabel="Media" itemValue="2" />
+						<f:selectItem noSelectionOption="true" itemLabel="Baja"
+							itemValue="3" />
+					</h:selectOneMenu>
+				</pm:field>
+
+
+				<pm:field>
+					<h:outputLabel for="tipo" value="Tipo:" style="font-weight:bold" />
+
+					<h:selectOneMenu id="tipo" value="#{tareaBean.tipo}">
+						<f:selectItem itemLabel="Incidente" itemValue="1" />
+						<f:selectItem itemLabel="Pedido de cambio" itemValue="2" />
+					</h:selectOneMenu>
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="clasificacion" value="Clasificación:"
+						style="font-weight:bold" />
+
+					<h:selectOneMenu id="clasificacion"
+						value="#{tareaBean.clasificacion}">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems value="#{tareaBean.listarCategorias()}" />
+					</h:selectOneMenu>
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="asunto" value="Asunto: *" required="true"
+						style="font-weight:bold"
+						requiredMessage="Debe ingresar un asunto." />
+					<p:inputText id="asunto" value="#{tareaBean.asunto}"
+						styleClass="Name" requiredMessage="Debe ingresar un asunto."
+						required="true" size="60" />
+
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="descripcion" value="Descripción: *"
+						required="true" style="font-weight:bold" />
+					<p:inputTextarea id="descripcion" value="#{tareaBean.descripcion}"
+						styleClass="Name" rows="6" cols="60" required="true"
+						requiredMessage="Debe ingresar una descripción para la tarea." />
+				</pm:field>
+
+
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+
+				<p:commandButton value="Crear"
+					actionListener="#{tareaBean.crearTarea(sesionBean.mail)}">
+
+				</p:commandButton>
+			</h:form>
+		</pm:content>
+	</pm:page>
+</f:view>

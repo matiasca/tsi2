@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Alta Categoria</ui:define>
+	<ui:define name="body">
+		<h:form id="form111">
+		
+		
+			<p:blockUI block="panelCat" trigger="botonCrearCategoria">  
+			        Cargando<br />
+				<p:graphicImage value="/imagenes/ajax-loader.gif" />
+			</p:blockUI>
+		
+			<script type="text/javascript">
+			function limpiarForm()
+			{       
+				$('.Name').attr('value', '');
+			}
+			</script>		
+		
+		
+			<p:panel id="panelCat" header="Nuevo Categoria"
+				style="margin-bottom:10px;">
+				<h:panelGrid columns="2" cellpadding="5">
+
+
+					<h:outputLabel for="nombreCat" value="Categoria: *"
+						style="font-weight:bold" />
+					<p:inputText id="nombreCategoria" value="#{categoriaBean.nombre}" required="true" styleClass="Name"
+						requiredMessage="Debe ingresar el nombre de la nueva categoria">						
+					</p:inputText>
+
+
+				
+					<p:growl id="growlCategoria"  />
+
+
+					<p:commandButton value="Crear" id="botonCrearCategoria"
+						actionListener="#{categoriaBean.crearCategoria}" update="growlCategoria"	oncomplete="limpiarForm()" />
+
+					
+
+
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

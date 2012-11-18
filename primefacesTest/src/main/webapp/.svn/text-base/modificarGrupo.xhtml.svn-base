@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Modificar Grupo</ui:define>
+	<ui:define name="body">
+		<script type="text/javascript">
+			function handleDrop(event, ui) {
+				ui.draggable.fadeOut(function() {$(this).fadeIn();});
+
+				$(this).droppable('disable');
+			}
+		</script>
+
+
+		<h:form id="modificarGrupoForm">
+
+			<p:panel id="panelGrup" header="Modificar Grupo"
+				style="margin-bottom:10px;">
+
+				<p:blockUI block="panelGrup" trigger="btnAll">  
+			        Cargando<br />
+					<p:graphicImage value="/imagenes/ajax-loader.gif" />
+				</p:blockUI>
+
+				<p:growl id="growlModificarGrupo" />
+
+				<h:panelGrid id="panelModificarGrupoSeleccion" columns="2"
+					cellpadding="50">
+					<h:outputLabel for="nombreGrupoModGru"
+						value="Seleccione el grupo que desea modificar: "
+						style="font-weight:bold" />
+					<p:selectOneMenu id="grupos" effect="fade" var="admins"
+						style="width:250px"
+						value="#{modificarGrupoBean.grupoSeleccionado}">
+						<f:selectItem itemLabel="Elija uno" itemValue="" />
+						<f:selectItems value="#{modificarGrupoBean.listaGrupos}" />
+						<p:ajax process="grupos"
+							update="panelModificarGrupo tecnicosDispoModGru" event="change"
+							listener="#{modificarGrupoBean.cargarDatosGrupo()}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+
+
+				<p:panel id="panelModificarGrupo" style="margin-bottom:10px"
+					columns="2">
+					<h:panelGrid id="panelDatosGrupo" columns="2" cellpadding="15">
+						<h:outputLabel for="nombreGrupoModGru" value="Nombre: "
+							style="font-weight:bold" />
+						<p:inplace id="basic">
+							<p:inputText id="nombreGrupoMod"
+								value="#{modificarGrupoBean.nuevoNombreGrupo}" required="true"
+								requiredMessage="Debe ingresar un nombre para el grupo.">
+							</p:inputText>
+						</p:inplace>
+						<h:outputLabel for="adminNombreModGru" value="Administrador: "
+							style="font-weight:bold" />
+						<p:inplace id="basic2">
+							<p:selectOneMenu value="#{modificarGrupoBean.nuevoAdministrador}"
+								style="width:200px">
+								<f:selectItems
+									value="#{modificarGrupoBean.listarAdministradores()}"
+									var="resp" itemLabel="#{resp.nombre} - #{resp.mail}"
+									itemValue="#{resp.nombre} - #{resp.mail}"/>
+							</p:selectOneMenu>
+						</p:inplace>
+
+					</h:panelGrid>
+
+					<p:fieldset id="tecnicosDispoModGru" legend="Tecnicos del Grupo">
+						<p:outputPanel id="dropArea2ModGru">
+							<h:outputText value="No hay tecnicos en el grupo."
+								rendered="#{empty modificarGrupoBean.listaTecnicosGrupo}"
+								style="font-size:20px;" />
+
+							<p:dataTable id="tecDisponiblesModGru" var="tec"
+								value="#{modificarGrupoBean.listaTecnicosGrupo}"
+								rendered="#{not empty modificarGrupoBean.listaTecnicosGrupo}">
+								<p:column style="width:20px">
+									<h:outputText id="dragIcon"
+										styleClass="ui-icon ui-icon-arrow-4" />
+									<p:draggable for="dragIcon" revert="true" />
+								</p:column>
+
+								<p:column headerText="Nombre">
+									<h:outputText value="#{tec.nombre}" />
+								</p:column>
+
+								<p:column headerText="Mail">
+									<h:outputText value="#{tec.mail}" />
+								</p:column>
+							</p:dataTable>
+
+						</p:outputPanel>
+					</p:fieldset>
+
+					<p:fieldset id="tecElegiModGru" legend="Otros Tecnicos"
+						style="margin-top:20px">
+						<p:outputPanel id="dropAreaModGru">
+							<h:outputText value="No hay mas tecnicos."
+								rendered="#{empty modificarGrupoBean.listaRestoTecnicos}"
+								style="font-size:20px;" />
+
+							<p:dataTable id="tecnicosElegidosModGru" var="tec2"
+								value="#{modificarGrupoBean.listaRestoTecnicos}"
+								rendered="#{not empty modificarGrupoBean.listaRestoTecnicos}">
+								<p:column style="width:20px">
+									<h:outputText id="dragIcon2"
+										styleClass="ui-icon ui-icon-arrow-4" />
+									<p:draggable for="dragIcon2" revert="true" />
+								</p:column>
+								<p:column headerText="Nombre">
+									<h:outputText value="#{tec2.nombre}" />
+								</p:column>
+
+								<p:column headerText="Mail">
+									<h:outputText value="#{tec2.mail}" />
+								</p:column>
+							</p:dataTable>
+						</p:outputPanel>
+					</p:fieldset>
+
+					<p:droppable for="tecElegiModGru" tolerance="touch"
+						activeStyleClass="ui-state-highlight"
+						datasource="tecDisponiblesModGru" onDrop="handleDrop">
+						<p:ajax listener="#{modificarGrupoBean.onTecDrop}"
+							update="dropAreaModGru dropArea2ModGru tecnicosElegidosModGru tecDisponiblesModGru" />
+					</p:droppable>
+
+					<p:droppable for="tecnicosDispoModGru" tolerance="touch"
+						activeStyleClass="ui-state-highlight"
+						datasource="tecnicosElegidosModGru" onDrop="handleDrop">
+						<p:ajax listener="#{modificarGrupoBean.onTecDrop2}"
+							update="dropAreaModGru dropArea2ModGru tecnicosElegidosModGru tecDisponiblesModGru" />
+					</p:droppable>
+
+
+					<p:growl id="growlGrupo" />
+
+
+					<p:commandButton value="Guardar Cambios" id="btnAll"
+						actionListener="#{modificarGrupoBean.guardarCambiosGrupo}"
+						update="panelGrup" />
+
+
+
+
+				</p:panel>
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

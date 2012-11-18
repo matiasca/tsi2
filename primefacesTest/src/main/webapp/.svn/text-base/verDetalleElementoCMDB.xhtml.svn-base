@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Gestion CMDB</ui:define>
+	<ui:define name="body">
+
+
+		<h:form id="idformCMDB">
+
+		
+
+				<p:dialog id="dialogoCMDBElementModificar" header="Editar elemento"
+					widgetVar="dialogoCMDBElementModificar" resizable="false" showEffect="clip"
+					modal="true" hideEffect="clip" dynamic="true">
+
+
+					<p:panel id="panelModificarElemento" style="margin-bottom:10px" columns="2">
+						<h:panelGrid id="aux22" columns="2" cellpadding="5">
+
+							<h:outputLabel  value="Codigo: " style="font-weight:bold" />
+
+							<h:outputLabel id="codElemento2" value="#{verDetallesElementoCMDBBean.codigoElemento}" />
+
+							<h:outputLabel value="Descripcion:" style="font-weight:bold" />
+						
+							<p:inplace>
+								<p:inputText id="descrElemento2" required="true" requiredMessage="Debe de ingresar una descripción."
+									value="#{verDetallesElementoCMDBBean.descripcionElemento}" />
+							</p:inplace>
+							
+							<h:outputLabel value="Ubicacion:"	style="font-weight:bold" />
+							<p:inplace>
+								<p:inputText id="ubicElemento2"  required="true" requiredMessage="Debe de ingresar una ubicación"
+									value="#{verDetallesElementoCMDBBean.ubicacionElemento}" />
+							</p:inplace>
+
+						</h:panelGrid>
+
+						<p:commandButton value="Volver"
+							onclick="dialogoCMDBElementModificar.hide();" />
+						<p:spacer width="500" height="10" />
+						<p:commandButton value="Guardar Cambios" id="btnAll" update="growlModificar panelDetalleElemento panelModificarElemento"
+							actionListener="#{verDetallesElementoCMDBBean.modificarElementoCMDB}" />
+							
+						<p:growl id="growlModificar"></p:growl>	
+
+					</p:panel>
+				</p:dialog>
+				
+				
+
+					<p:panel id="panelDetalleElemento" style="margin-bottom:10px" columns="2">
+						<h:panelGrid id="aux" columns="2" cellpadding="5">
+
+							<h:outputLabel for="codElemento" value="Codigo: "
+								style="font-weight:bold" />
+
+							<h:outputText id="codElemento"
+								value="#{verDetallesElementoCMDBBean.codigoElemento}" />
+
+							<h:outputLabel for="descrElemento" value="Descripcion:"
+								style="font-weight:bold" />
+
+							<h:outputText id="descrElemento"
+								value="#{verDetallesElementoCMDBBean.descripcionElemento}" />
+
+							<h:outputLabel for="ubicElemento" value="Ubicacion:"
+								style="font-weight:bold" />
+
+							<h:outputText id="ubicElemento"
+								value="#{verDetallesElementoCMDBBean.ubicacionElemento}" />
+
+
+						</h:panelGrid>
+						<p:spacer width="400" height="10" />
+						
+						<p:commandButton value="Modificar"
+							onclick="dialogoCMDBElementModificar.show();" />
+						<p:commandButton value="Eliminar"
+							onclick="dialogoCMDBElementEliminar.show();" />
+						<p:spacer height="10" />
+						
+						<p:separator id="separator" />
+
+						<p:panel id="panelCMDBElement" style="margin-bottom:10px" columns="2">
+							<p:dataTable id="tablaElementoCMDB"
+								value="#{verDetallesElementoCMDBBean.historialElementoCMDB}" rowKey="#{row}"
+								var="row" rows="10" paginator="true" paginatorPosition="bottom"
+								selectionMode="single"
+								emptyMessage="No existen movimientos para este elemento">
+
+
+								<p:column headerText="Fecha">
+									<h:outputText value="#{row.fecha}" />
+								</p:column>
+								<p:column headerText="Responsable">
+									<h:outputText value="#{row.responsable}" />
+								</p:column>
+								<p:column headerText="Descripción">
+									<h:outputText value="#{row.descr}" />
+								</p:column>
+
+
+							</p:dataTable>
+						</p:panel>
+
+						<p:commandButton value="Volver"
+							action="volverGestionCMDB" />
+						
+					</p:panel>
+				
+				
+				
+				
+				<p:confirmDialog id="dialogoCMDBElementEliminar" message="Esta seguro que quiere eleminar este elemento?"  
+                header="Elimnar elemento" severity="alert" widgetVar="dialogoCMDBElementEliminar">  
+                  
+			        <p:commandButton id="confirm" value="Si"  onclick="dialogoCMDBElementEliminar.hide()"  
+			                    actionListener="#{verDetallesElementoCMDBBean.eliminarElementoCMDB}" />  
+			        <p:commandButton id="decline" value="No" onclick="dialogoCMDBElementEliminar.hide()" type="button" />   
+			                  
+			    </p:confirmDialog>  
+				
+		</h:form>
+
+	</ui:define>
+</ui:composition>

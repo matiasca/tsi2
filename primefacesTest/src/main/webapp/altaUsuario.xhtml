@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Alta Usuario</ui:define>
+	<ui:define name="body">
+
+		<h:form id="gridAltaUsuario">
+		
+
+
+
+			<p:panel id="panelUsuario" header="Nuevo Usuario"
+				style="margin-bottom:10px;">
+				
+				<p:blockUI block="panelUsuario" trigger="botonCrearUsuario">  
+			        Cargando<br />
+				<p:graphicImage value="/imagenes/ajax-loader.gif" />
+			</p:blockUI>
+				<h:panelGrid columns="2">
+
+					<h:outputLabel for="cliente" value="Cliente: *"
+						style="font-weight:bold" />
+
+					<p:selectOneMenu value="#{usuarioBean.cliente}" effect="fade"
+						required="true" style="width:200px"
+						requiredMessage="Debe ingresar un administrador para el grupo.">
+						<f:selectItem itemLabel="Elija un cliente" itemValue="" />
+						<f:selectItems value="#{usuarioBean.listarClientes()}" />
+					</p:selectOneMenu>
+
+					<h:outputLabel for="email" value="Email: *"
+						style="font-weight:bold" />
+					<p:inputText id="mail" value="#{usuarioBean.email}" required="true"
+						requiredMessage="Debe ingresar un email." styleClass="Name" style="width:200px"
+						validatorMessage="Mail invalido.">
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</p:inputText>
+
+
+					<p:growl id="growlUsuario"/>
+
+					<p:commandButton value="Crear" update="growlUsuario panelUsuario" id="botonCrearUsuario"
+						actionListener="#{usuarioBean.crearUsuario}"
+						 />
+
+					
+
+
+
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

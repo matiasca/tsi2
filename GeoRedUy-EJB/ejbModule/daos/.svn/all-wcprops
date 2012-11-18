@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/ens/svn/repos/tsi210/!svn/ver/302/GeoRedUy-EJB/ejbModule/daos
+END
+SolicitudContactoDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/ens/svn/repos/tsi210/!svn/ver/138/GeoRedUy-EJB/ejbModule/daos/SolicitudContactoDAOImpl.java
+END
+EmpresaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/ens/svn/repos/tsi210/!svn/ver/186/GeoRedUy-EJB/ejbModule/daos/EmpresaDAOImpl.java
+END
+LocalEmpDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ens/svn/repos/tsi210/!svn/ver/237/GeoRedUy-EJB/ejbModule/daos/LocalEmpDAOImpl.java
+END
+OfertaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ens/svn/repos/tsi210/!svn/ver/256/GeoRedUy-EJB/ejbModule/daos/OfertaDAO.java
+END
+CategoriaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ens/svn/repos/tsi210/!svn/ver/92/GeoRedUy-EJB/ejbModule/daos/CategoriaDAOImpl.java
+END
+SitioInteresDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ens/svn/repos/tsi210/!svn/ver/256/GeoRedUy-EJB/ejbModule/daos/SitioInteresDAO.java
+END
+CompraDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ens/svn/repos/tsi210/!svn/ver/256/GeoRedUy-EJB/ejbModule/daos/CompraDAO.java
+END
+AdministradorDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/ens/svn/repos/tsi210/!svn/ver/310/GeoRedUy-EJB/ejbModule/daos/AdministradorDAOImpl.java
+END
+ImagenDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/ens/svn/repos/tsi210/!svn/ver/156/GeoRedUy-EJB/ejbModule/daos/ImagenDAOImpl.java
+END
+EventoDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/ens/svn/repos/tsi210/!svn/ver/197/GeoRedUy-EJB/ejbModule/daos/EventoDAOImpl.java
+END
+ComentarioDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/ens/svn/repos/tsi210/!svn/ver/237/GeoRedUy-EJB/ejbModule/daos/ComentarioDAOImpl.java
+END
+TipoNotificacionDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/ens/svn/repos/tsi210/!svn/ver/158/GeoRedUy-EJB/ejbModule/daos/TipoNotificacionDAOImpl.java
+END
+CheckInDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/ens/svn/repos/tsi210/!svn/ver/256/GeoRedUy-EJB/ejbModule/daos/CheckInDAOImpl.java
+END
+NotificacionDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/daos/NotificacionDAOImpl.java
+END
+UsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/daos/UsuarioDAO.java
+END
+SolicitudContactoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/ens/svn/repos/tsi210/!svn/ver/138/GeoRedUy-EJB/ejbModule/daos/SolicitudContactoDAO.java
+END
+EmpresaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ens/svn/repos/tsi210/!svn/ver/181/GeoRedUy-EJB/ejbModule/daos/EmpresaDAO.java
+END
+LocalEmpDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/ens/svn/repos/tsi210/!svn/ver/237/GeoRedUy-EJB/ejbModule/daos/LocalEmpDAO.java
+END
+CategoriaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/ens/svn/repos/tsi210/!svn/ver/87/GeoRedUy-EJB/ejbModule/daos/CategoriaDAO.java
+END
+AdministradorDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/ens/svn/repos/tsi210/!svn/ver/302/GeoRedUy-EJB/ejbModule/daos/AdministradorDAO.java
+END
+ImagenDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ens/svn/repos/tsi210/!svn/ver/156/GeoRedUy-EJB/ejbModule/daos/ImagenDAO.java
+END
+EventoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ens/svn/repos/tsi210/!svn/ver/197/GeoRedUy-EJB/ejbModule/daos/EventoDAO.java
+END
+ComentarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/ens/svn/repos/tsi210/!svn/ver/237/GeoRedUy-EJB/ejbModule/daos/ComentarioDAO.java
+END
+TipoNotificacionDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/ens/svn/repos/tsi210/!svn/ver/158/GeoRedUy-EJB/ejbModule/daos/TipoNotificacionDAO.java
+END
+OfertaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/ens/svn/repos/tsi210/!svn/ver/256/GeoRedUy-EJB/ejbModule/daos/OfertaDAOImpl.java
+END
+SitioInteresDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/ens/svn/repos/tsi210/!svn/ver/299/GeoRedUy-EJB/ejbModule/daos/SitioInteresDAOImpl.java
+END
+CompraDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/ens/svn/repos/tsi210/!svn/ver/256/GeoRedUy-EJB/ejbModule/daos/CompraDAOImpl.java
+END
+CheckInDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ens/svn/repos/tsi210/!svn/ver/237/GeoRedUy-EJB/ejbModule/daos/CheckInDAO.java
+END
+NotificacionDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/daos/NotificacionDAO.java
+END
+UsuarioDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/daos/UsuarioDAOImpl.java
+END

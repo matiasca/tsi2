@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Baja Usuario</ui:define>
+	<ui:define name="body">
+
+		<script type="text/javascript">
+    function handleDialogSubmit(xhr, status, args) {
+        if (args.validationFailed) {
+        	dialogoEliminarUsuario.show();
+        } else {
+        	dialogoEliminarUsuario.hide();
+        }
+    }
+	</script>
+		<h:form id="idform">
+
+
+
+			<p:growl id="growlCliente" />
+
+			<h:panelGrid columns="2">
+				<h:outputLabel for="cliente" value="Cliente:"
+					style="font-weight:bold" />
+
+				<p:selectOneMenu id="select1" value="#{bajaUsuarioBean.cliente}" effect="fade"
+					style="width:170px" update=":idform:dataTable">
+					<f:selectItem itemLabel="Elija un cliente" itemValue="" />
+					<f:selectItems value="#{bajaUsuarioBean.listaClientes}" />
+					<p:ajax process="select1" update=":idform:dataTable" event="change"
+						listener="#{bajaUsuarioBean.listarUsuarios()}" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+
+			<h:panelGrid id="panelf" columns="1" cellpadding="50">
+				<p:dataTable id="dataTable" var="cli"
+					value="#{bajaUsuarioBean.listaUsuarios}"  rowKey="#{cli}"
+					selectionMode="single" selection="#{bajaUsuarioBean.mailUsuario}"
+					emptyMessage="No se encontraron resultados">
+
+					<p:ajax event="rowSelect" 
+						oncomplete="dialogoEliminarUsuario.show()" />
+
+					<p:column headerText="Nombre" filterBy="#{cli.nombre}">
+						<h:outputText value="#{cli.nombre}" />
+					</p:column>
+
+					<p:column headerText="Mail" filterBy="#{cli.mail}">
+						<h:outputText value="#{cli.mail}" />
+					</p:column>
+
+				</p:dataTable>
+			</h:panelGrid>
+
+			<p:confirmDialog id="dialogoEliminarUsuario"
+				message="¿Esta seguro que desea dar de baja al usuario seleccionado?"
+				header="Baja de Usuario" severity="alert"
+				widgetVar="dialogoEliminarUsuario">
+				<p:growl id="messages" />
+				<p:commandButton id="confirm" value="Aceptar" update="messages dataTable"
+					oncomplete="dialogoEliminarUsuario.hide()"
+					actionListener="#{bajaUsuarioBean.borrarUsuario}" />
+
+				<p:commandButton id="decline" value="Cancelar"
+					onclick="dialogoEliminarUsuario.hide()" type="button" />
+
+			</p:confirmDialog>
+
+
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

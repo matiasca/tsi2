@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+
+		<script type="text/javascript">
+			function limpiarForm()
+			{       
+				$('.Name').attr('value', '');
+			}
+		</script>
+
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+		<pm:content>
+			<h:form>
+
+				<h:panelGrid columns="2" id="panelEditar">
+
+					<h:outputLabel value="Cliente: " style="font-weight:bold" />
+					<h:outputLabel value="#{detalleTareaBean.cliente}" />
+
+
+
+					<h:outputLabel value="Usuario: " style="font-weight:bold" />
+					<h:outputLabel value="#{detalleTareaBean.usuario}" />
+
+
+					<h:outputLabel value="Tipo:" style="font-weight:bold" />
+
+					<h:selectOneMenu value="#{detalleTareaBean.tipo}">
+						<f:selectItem itemLabel="Incidente" itemValue="Incidente" />
+						<f:selectItem itemLabel="Pedido de cambio"
+							itemValue="Pedido de cambio" />
+					</h:selectOneMenu>
+
+
+					<h:outputText value="Prioridad: " style="font-weight:bold" />
+
+					<h:selectOneMenu value="#{detalleTareaBean.prioridad}">
+						<f:selectItem itemLabel="Alta" itemValue="Alta" />
+						<f:selectItem itemLabel="Media" itemValue="Media" />
+						<f:selectItem itemLabel="Baja" itemValue="Baja" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Clasificación: " style="font-weight:bold" />
+
+					<h:selectOneMenu value="#{detalleTareaBean.categoria}">
+						<f:selectItem itemLabel="Sin clasificación" itemValue="" />
+						<f:selectItems value="#{detalleTareaBean.listarCategorias()}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Grupo:" style="font-weight:bold" />
+
+					<h:selectOneMenu value="#{detalleTareaBean.grupo}">
+						<f:selectItem itemLabel="Sin asignar" itemValue="" />
+						<f:selectItems value="#{detalleTareaBean.listarGrupos()}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Responsable: " style="font-weight:bold" />
+
+					<h:selectOneMenu id="responsable"
+						value="#{detalleTareaBean.responsable}" effect="fade">
+						<f:selectItem itemLabel="#{detalleTareaBean.responsable}" itemValue="#{detalleTareaBean.responsable}" />
+							<f:selectItem itemLabel="Sin asignar" itemValue="" />
+						<f:selectItems
+							value="#{detalleTareaBean.listarTecnicosAdministradoresSuper()}"
+							var="resp" itemLabel="#{resp.mail}" itemValue="#{resp.mail}" />
+						
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Estado: " style="font-weight:bold" />
+
+					<h:selectOneMenu value="#{detalleTareaBean.estado}">
+						<f:selectItem itemLabel="Asignada" itemValue="Asignada" />
+						<f:selectItem itemLabel="Ingresada" itemValue="Ingresada" />
+						<f:selectItem itemLabel="Pendiente cliente"
+							itemValue="Pendiente cliente" />
+					</h:selectOneMenu>
+
+				</h:panelGrid>
+
+				<p:separator id="separa" />
+
+				<h:panelGrid id="grid" columns="2" cellpadding="10">
+					<h:outputLabel value="Asunto: " style="font-weight:bold" />
+					<h:outputLabel value="#{detalleTareaBean.asunto}" />
+
+					<h:outputLabel value="Descripcion: " style="font-weight:bold" />
+					<h:outputLabel value="#{detalleTareaBean.descripcion}" />
+
+				</h:panelGrid>
+
+				<p:spacer width="400" height="10" />
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+				<p:commandButton value="Guardar Cambios"
+					actionListener="#{detalleTareaBean.modificarTarea}" />
+			</h:form>
+		</pm:content>
+	</pm:page>
+</f:view>
+
+
+

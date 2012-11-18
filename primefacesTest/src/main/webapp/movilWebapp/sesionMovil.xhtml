@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="Sesion :)">
+		<pm:header title="Sesion :)">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear"
+					href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+
+
+	
+		<pm:content>
+			<h:form>
+				<h:panelGrid columns="2">
+					<p:inputText value="#{sesionBean.tokenId}" />
+					<h:outputLabel value="{sesionBean.tokenId}" id="display" />
+
+					<p:inputText value="#{sesionBean.mail}" />
+					<h:outputLabel value="{sesionBean.mail}" id="display2" />
+
+					<p:inputText value="#{sesionBean.nombre}" />
+					<h:outputLabel value="{sesionBean.nombre}" id="display3" />
+
+					<p:inputText value="#{sesionBean.tipoUsuario}" />
+					<h:outputLabel value="{sesionBean.tipoUsuario}" id="display4" />
+
+				</h:panelGrid>
+				<p:commandButton value="Rockanrol nena" update="display" />
+
+			</h:form>
+		</pm:content>
+	</pm:page>
+</f:view>
+
+
+

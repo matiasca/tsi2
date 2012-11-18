@@ -1,0 +1,53 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<!-- Login -->
+	<pm:page title="PaginaPrincipal">
+		<pm:view id="iniciarSesion">
+
+
+			<h:form>
+				<p:panel id="panelLogin" >
+					<p:growl id="errores" style="left:200px" />
+
+						<h:outputLabel for="usuario" value="Email: " />
+						<p:inputText id="usuario" value="#{loginBean.usuario}"
+							styleClass="UserName" required="true"
+							requiredMessage="Debe ingresar su email."
+							validatorMessage="Mail inv A lido." style="width:290px">
+							<f:validateRegex
+								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						</p:inputText>
+
+
+						<h:outputLabel for="contrasenia" value="Contrase NI a: " />
+						<p:inputText id="contrasenia" type="password"
+							value="#{loginBean.contrasena}" required="true"
+							requiredMessage="Debe ingresar su contrase NI a." />
+
+
+
+					<p:commandButton id="btnLogin" value="iniciar" update="errores"
+						styleClass="buttonLogin" action="#{loginBean.iniciarSesion}" />
+				</p:panel>
+			</h:form>
+			<pm:header title="Iniciar Sesion" />
+			<pm:content>
+
+				<p:inputText value="">
+				</p:inputText>
+				<p:commandButton value="Iniciar" onclick="bar.show()" type="button" />
+
+				<p:panel header="Login">
+					Toggle panel content
+
+				</p:panel>
+				<h:outputLink value="#algunaOtra">Next</h:outputLink>
+			</pm:content>
+		</pm:view>
+	</pm:page>
+</f:view>

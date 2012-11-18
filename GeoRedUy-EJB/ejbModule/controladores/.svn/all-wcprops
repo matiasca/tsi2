@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/ens/svn/repos/tsi210/!svn/ver/302/GeoRedUy-EJB/ejbModule/controladores
+END
+IControladorAdministrador.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/ens/svn/repos/tsi210/!svn/ver/302/GeoRedUy-EJB/ejbModule/controladores/IControladorAdministrador.java
+END
+IControladorOferta.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/ens/svn/repos/tsi210/!svn/ver/256/GeoRedUy-EJB/ejbModule/controladores/IControladorOferta.java
+END
+IControladorSitioInteres.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/ens/svn/repos/tsi210/!svn/ver/256/GeoRedUy-EJB/ejbModule/controladores/IControladorSitioInteres.java
+END
+IControladorActualizador.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/controladores/IControladorActualizador.java
+END
+ControladorEmpresa.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/ens/svn/repos/tsi210/!svn/ver/299/GeoRedUy-EJB/ejbModule/controladores/ControladorEmpresa.java
+END
+IControladorNotificacion.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/controladores/IControladorNotificacion.java
+END
+ControladorAdministrador.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/ens/svn/repos/tsi210/!svn/ver/302/GeoRedUy-EJB/ejbModule/controladores/ControladorAdministrador.java
+END
+IControladorUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/controladores/IControladorUsuario.java
+END
+ControladorOferta.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/controladores/ControladorOferta.java
+END
+ControladorSitioInteres.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/ens/svn/repos/tsi210/!svn/ver/299/GeoRedUy-EJB/ejbModule/controladores/ControladorSitioInteres.java
+END
+ControladorActualizador.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/controladores/ControladorActualizador.java
+END
+IControladorEmpresa.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/ens/svn/repos/tsi210/!svn/ver/299/GeoRedUy-EJB/ejbModule/controladores/IControladorEmpresa.java
+END
+ControladorNotificacion.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/controladores/ControladorNotificacion.java
+END
+ControladorUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/ens/svn/repos/tsi210/!svn/ver/294/GeoRedUy-EJB/ejbModule/controladores/ControladorUsuario.java
+END

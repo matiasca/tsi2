@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:view id="vistaListaTareas" swatch="c">
+
+			<pm:header title="ACCSA">
+				<f:facet name="left">
+					<p:button value="Back" icon="back" href="#main?reverse=true" />
+				</f:facet>
+				<f:facet name="right">
+					<p:button value="Cerrar Sesion" icon="gear"
+						href="#main?reverse=true" />
+				</f:facet>
+			</pm:header>
+
+			<pm:content>
+				<h:form id="formListaTareas">
+					<!-- Agragar Tarea -->
+
+					<p:button href="#main?reverse=true" icon="gear"
+						value="Agregar Tarea" />
+
+					<p:accordionPanel>
+						<!-- Tareas PENDIENTES -->
+						<p:tab title="Tareas Pendientes">
+
+							<!-- 							<p:dataList type="inset"
+								value="#{tablaTareaBean.listarTareasPendientes()}" var="row"
+								filter="true">
+-->
+							<p:dataList type="inset" value="#{tablaTareaBean.listaTareas}"
+								var="row" filter="true">
+
+								<p:commandLink value="#{row.fecha} - #{row.estado}"
+									update=":formTareasPendientes"
+									action="pm:vistaTareasPendientes">
+									<f:setPropertyActionListener value="#{row}"
+										target="#{tablaTareaBean.tareaSelecionada}" />
+								</p:commandLink>
+
+							</p:dataList>
+						</p:tab>
+
+						<!-- Tareas FINALIZADAS -->
+						<p:tab title="Tareas Finalizadas">
+							<!-- <p:dataList type="inset"
+								value="#{tablaTareaBean.listarTareasFinalizadas()}" var="tarea">
+								<f:attribute name="filter" value="true" />
+								-->
+							<p:dataList type="inset" value="#{tablaTareaBean.listaTareas}"
+								var="row" filter="true">
+								<p:commandLink value="#{row.fecha} - #{row.estado}"
+									update=":formTareasPendientes"
+									action="pm:vistaTareasPendientes">
+									<f:setPropertyActionListener value="#{row}"
+										target="#{tablaTareaBean.tareaSelecionada}" />
+								</p:commandLink>
+							</p:dataList>
+						</p:tab>
+
+					</p:accordionPanel>
+				</h:form>
+			</pm:content>
+		</pm:view>
+
+		<pm:view id="vistaTareasPendientes" swatch="c">
+
+			<pm:header title="Detalles de Tarea">
+				<f:facet name="left">
+					<p:button value="Back" icon="back" href="#main?reverse=true" />
+				</f:facet>
+			</pm:header>
+
+			<pm:content>
+				<h:form id="formTareasPendientes">
+					<h:panelGrid columns="2">
+
+						<h:outputLabel value="Cliente: " style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.cliente}" />
+
+						<h:outputLabel value="Usuario: " style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.usuario}" />
+
+						<h:outputLabel for="asunto" value="Asunto: "
+							style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.asunto}" />
+
+						<h:outputLabel for="fecha" value="Fecha: "
+							style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.fecha}" />
+
+						<h:outputLabel value="Tipo:" style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.tipo}" />
+
+						<h:outputLabel value="Prioridad: " style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.prioridad}" />
+
+						<h:outputLabel for="clasificacion" value="Clasificación: "
+							style="font-weight:bold" />
+						<h:outputLabel id="clasificacion"
+							value="#{detalleTareaBean.categoria}" />
+
+						<h:outputLabel for="grupo" value="Grupo:" style="font-weight:bold" />
+						<h:outputLabel id="grupo" value="#{detalleTareaBean.grupo}" />
+
+						<h:outputLabel for="responsable" value="Responsable: "
+							style="font-weight:bold" />
+						<h:outputLabel id="responsable"
+							value="#{detalleTareaBean.responsable}" />
+
+						<h:outputLabel for="estado" value="Estado: "
+							style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.estado}" />
+
+					</h:panelGrid>
+
+
+					<!-- DESCRIPCION -->
+					<h:form>
+						<h:outputLabel for="descripcion" value="Descripcion: "
+							style="font-weight:bold" />
+					</h:form>
+					<h:form>
+						<h:outputLabel value="#{detalleTareaBean.descripcion}" />
+					</h:form>
+
+					<p:commandButton value="Agregar Movimiento"
+						onclick="dialogoMovimiento.show();" />
+
+					<p:commandButton value="Cambio" onclick="dialogoCambio.show();" />
+
+					<p:commandButton value="Editar" onclick="dialogoCambio.show();" />
+
+					<p:commandButton value="Ver historial"
+						onclick="dialogoCambio.show();" />
+
+					<p:commandButton value="Finalizar" onclick="dialogoCambio.show();" />
+
+				</h:form>
+			</pm:content>
+		</pm:view>
+
+
+	</pm:page>
+</f:view>
+
+
+
+
+
+

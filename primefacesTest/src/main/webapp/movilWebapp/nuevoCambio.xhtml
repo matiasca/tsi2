@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear"
+					href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+
+		<!-- Principal Nuevo Cambio -->
+		<pm:content>
+
+			<!-- Tareas Pendientes -->
+			<p:commandButton type="button" value="Tareas Pendientes" />
+
+			<!-- Formulario de cambio -->
+			<p:dataList type="inset">
+				<h:form>
+					<!-- Cliente del cambio -->
+					<h:outputLabel value="Cliente:" />
+					<h:outputLabel value="{sesion.idTarea.CLIENTE?}" />
+					
+					<!-- ELEMENTOS del cliente -->
+					<p:selectOneMenu value="{clientesBean.selectedCliente.elementos}">
+						<f:selectItem itemLabel="Filtrar Cliente" itemValue="" />
+						<f:selectItems itemLabel="#{clienteBean_.elementos}"
+							itemValue="#{clienteBean_.name}" />
+					</p:selectOneMenu>
+
+					<!-- Boton de agragar elemento (deberia abrir un popUp para agregar nuevo elemento-->
+					<p:commandButton type="button" value="Agregar Elemento" />
+
+					<!-- Descripcion -->
+					<pm:field>
+						<h:outputLabel for="descripcion" value="Descripcion" />
+						<p:inputTextarea id="descripcion" value="{cambioBean.descripcion}"
+							requiredMessage="Debe ingresar la descripcion." required="true" />
+					</pm:field>
+
+					<p:separator />
+					<h:outputText value="Registro de horas:" />
+
+					<!-- Registro de horas de INICIO-->
+					<h:panelGrid columns="2">
+						<pm:field>
+							<h:outputText value="Fecha Inicio" />
+							<br />
+							<p:calendar id="fechaInicio" />
+						</pm:field>
+						<pm:field>
+							<h:outputText value="Hora Inicio" />
+							<br />
+							<p:inputMask mask="99:99" id="horaInicio"
+								value="#{cambioBean.horaInicio}" />
+						</pm:field>
+					</h:panelGrid>
+
+					<!-- Registro de horas de FIN -->
+					<h:panelGrid columns="2">
+						<pm:field>
+							<h:outputText value="Fecha Fin" />
+							<br />
+							<p:calendar id="fechaFin" />
+						</pm:field>
+						<pm:field>
+							<h:outputText value="Hora Fin" />
+							<br />
+							<p:inputMask mask="29:69" id="horaFin"
+								value="#{cambioBean.horaInicio}" />
+						</pm:field>
+					</h:panelGrid>
+				</h:form>
+			</p:dataList>
+
+
+		</pm:content>
+	</pm:page>
+</f:view>
+
+
+

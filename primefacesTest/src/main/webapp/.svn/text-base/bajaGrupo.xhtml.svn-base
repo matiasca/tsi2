@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Baja Grupo de Tecnicos</ui:define>
+	<ui:define name="body">
+
+	<script type="text/javascript">
+    function handleDialogSubmit(xhr, status, args) {
+        if (args.validationFailed) {
+        	dialogoEliminarGrupo.show();
+        } else {
+        	dialogoEliminarGrupo.hide();
+        }
+    }
+	</script>
+		<h:form id="idform">
+		
+		
+
+			<p:growl id="growlCliente" />
+
+			<h:panelGrid id="panelf" columns="1" cellpadding="50">
+				<p:dataTable id="dataTable" var="cli"
+					value="#{bajaGrupoBean.listaGrupos}" rowKey="#{cli}"
+					selectionMode="single" selection="#{bajaGrupoBean.nombreGrupo}"
+					emptyMessage="No se encontraron resultados">
+
+					<p:ajax event="rowSelect" listener="#{bajaGrupoBean.onRowSelect}"
+						oncomplete="dialogoEliminarGrupo.show()"
+						 />
+
+					<p:column headerText="Grupos" >
+						<h:outputText value="#{cli}" />
+					</p:column>
+
+					
+
+				</p:dataTable>
+			</h:panelGrid>
+
+			<p:confirmDialog id="dialogoEliminarGrupo"
+				message="¿Esta seguro que desea dar de baja el grupo seleccionado?"
+				header="Baja de Grupo" severity="alert" widgetVar="dialogoEliminarGrupo">
+				<p:growl id="messages" />
+				<p:commandButton id="confirm" value="Aceptar" update="messages panelf dataTable" 
+					oncomplete="dialogoEliminarGrupo.hide()"
+					actionListener="#{bajaGrupoBean.borrarGrupo()}" />
+				
+				<p:commandButton id="decline" value="Cancelar"
+					onclick="dialogoEliminarGrupo.hide()" type="button" />
+
+			</p:confirmDialog>
+
+
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,31 @@
+.panelLogin {
+    height: 250px;
+    margin: 200px auto;
+    width: 400px;
+}
+
+.ui-growl {
+    left: 40%;
+}
+
+.buttonLogin {
+    margin-top: 40px;
+    margin-right: 50px;
+    float: right;
+}
+
+.containerPanel {
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fileUpload{
+	width: 400px;
+}
+
+.positionButton{
+	
+	margin-top: 40px;
+	
+}

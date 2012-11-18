@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Alta Cliente</ui:define>
+	<ui:define name="body">
+
+
+		<h:form>
+		
+			<p:blockUI block="panelCliente" trigger="btnAll">  
+			        Cargando<br />
+				<p:graphicImage value="/imagenes/ajax-loader.gif" />
+			</p:blockUI>
+
+			<script type="text/javascript">
+			function limpiarForm()
+			{        
+				$('.Name').attr('value', '');
+			}
+			</script>
+
+
+
+
+			<p:growl id="growlCliente"  />
+
+			<p:panel id="panelCliente" header="Nuevo Cliente"
+				style="margin-bottom:10px" columns="2">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:panelGrid id="aux" columns="2" cellpadding="5">
+
+						<h:outputLabel for="name" value="Cliente: *"
+							style="font-weight:bold" />
+						<p:inputText id="name" value="#{clienteBean.nombreCliente}"
+							styleClass="Name" required="true"
+							requiredMessage="Debe ingresar un cliente." />
+
+
+
+						<h:outputLabel for="direccion" value="Dirección:"
+							style="font-weight:bold" />
+						<p:inputText id="direccion" styleClass="Name"
+							value="#{clienteBean.direccionCliente}" />
+
+
+
+
+
+						<h:outputLabel for="contacto" value="Nombre de contacto: *"
+							style="font-weight:bold" />
+
+						<p:inputText id="contacto" value="#{clienteBean.nombreContacto}"
+							required="true" styleClass="Name"
+							requiredMessage="Debe ingresar un nombre de contacto."
+							validatorMessage="Nombre invalido.">
+							<f:validateRegex pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ]*" />
+						</p:inputText>
+
+
+						<h:outputLabel for="email" value="Email de contacto: *"
+							style="font-weight:bold" />
+						<p:inputText id="email" value="#{clienteBean.emailContacto}"
+							required="true" validatorMessage="Mail invalido."
+							styleClass="Name"
+							requiredMessage="Debe ingresar un email de contacto.">
+							<f:validateRegex
+								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						</p:inputText>
+
+						<h:outputLabel for="telefono" value="Telefono de contacto:"
+							style="font-weight:bold" />
+						<p:inputText id="telefono" value="#{clienteBean.telefonoContacto}"
+							validatorMessage="Teléfono invalido." styleClass="Name">
+							<f:validateRegex pattern="[0-9 ]*" />
+						</p:inputText>
+
+						
+						<h:outputLabel for="grupo" value="Grupo Asociado:" style="font-weight:bold" />
+
+						<p:selectOneMenu id="grupo" value="#{clienteBean.grupo}"
+							effect="fade" style="width:200px">
+							<f:selectItem itemLabel="" itemValue="" />
+							<f:selectItems value="#{clienteBean.listarGrupos()}" />
+
+						</p:selectOneMenu>
+
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" cellpadding="5">
+						<h:outputLabel for="descripcion" value="Descripción:" />
+						<p:inputTextarea rows="10" cols="45" styleClass="Name"
+							value="#{clienteBean.comentarios}" />
+					</h:panelGrid>
+
+
+
+					<p:fieldset legend="SLA:">
+						<h:panelGrid columns="3" cellpadding="10">
+
+							<h:outputText value="Alta: *" />
+							<p:inputText id="Alta" value="#{clienteBean.SLAAlta}" size="4"
+								required="true" validatorMessage="SLA alta invalido."
+								styleClass="Name"
+								requiredMessage="Debe ingresar un valor de SLA alta.">
+								<f:validateRegex pattern="[1-9][0-9]*" />
+							</p:inputText>
+							<p:selectOneButton value="#{clienteBean.SLAAlta_tipo}" size="2">
+								<f:selectItem  itemLabel="Horas" itemValue="1" />
+								<f:selectItem noSelectionOption="true" itemLabel="Dias"
+									itemValue="2" />
+							</p:selectOneButton>
+
+							<h:outputText value="Media: *" />
+							<p:inputText id="Media" value="#{clienteBean.SLAMedia}" size="4"
+								required="true" validatorMessage="SLA media invalido."
+								styleClass="Name"
+								requiredMessage="Debe ingresar un valor de SLA media.">
+								<f:validateRegex pattern="[1-9][0-9]*" />
+							</p:inputText>
+							<p:selectOneButton value="#{clienteBean.SLAMedia_tipo}">
+								<f:selectItem itemLabel="Horas" itemValue="1" />
+								<f:selectItem noSelectionOption="true" itemLabel="Dias"
+									itemValue="2" />
+							</p:selectOneButton>
+
+							<h:outputText value="Baja: *" />
+							<p:inputText id="Baja" value="#{clienteBean.SLABaja}" size="4"
+								required="true" validatorMessage="SLA baja invalido."
+								styleClass="Name"
+								requiredMessage="Debe ingresar un valor de SLA baja.">
+								<f:validateRegex pattern="[1-9][0-9]*" />
+							</p:inputText>
+							<p:selectOneButton value="#{clienteBean.SLABaja_tipo}">
+								<f:selectItem itemLabel="Horas" itemValue="1" />
+								<f:selectItem noSelectionOption="true" itemLabel="Dias"
+									itemValue="2" />
+							</p:selectOneButton>
+
+						</h:panelGrid>
+					</p:fieldset>
+
+					<p:fieldset legend="Alertas por Inactividad:">
+						<h:panelGrid columns="3" cellpadding="10">
+
+							<h:outputText value="Alta: *" />
+							<p:inputText id="alertaAlta" value="#{clienteBean.alertaAlta}"
+								size="4" required="true" styleClass="Name"
+								validatorMessage="Alerta alta invalido."
+								requiredMessage="Debe ingresar una alerta alta.">
+								<f:validateRegex pattern="[1-9][0-9]*" />
+							</p:inputText>
+							<p:selectOneButton value="#{clienteBean.alertaAlta_tipo}">
+								<f:selectItem itemLabel="Horas" itemValue="1" />
+								<f:selectItem noSelectionOption="true" itemLabel="Dias"
+									itemValue="2" />
+							</p:selectOneButton>
+
+							<h:outputText value="Media: *" />
+							<p:inputText id="alertaMedia" value="#{clienteBean.alertaMedia}"
+								size="4" required="true" styleClass="Name"
+								validatorMessage="Alerta media invalido."
+								requiredMessage="Debe ingresar una alerta media.">
+
+								<f:validateRegex pattern="[1-9][0-9]*" />
+							</p:inputText>
+							<p:selectOneButton value="#{clienteBean.alertaMedia_tipo}">
+								<f:selectItem itemLabel="Horas" itemValue="1" />
+								<f:selectItem noSelectionOption="true" itemLabel="Dias"
+									itemValue="2" />
+							</p:selectOneButton>
+
+							<h:outputText value="Baja: *" />
+							<p:inputText id="alertaBaja" value="#{clienteBean.alertaBaja}"
+								size="4" required="true" styleClass="Name"
+								validatorMessage="Alerta baja invalido."
+								requiredMessage="Debe ingresar una alerta baja.">
+								<f:validateRegex pattern="[1-9][0-9]*" />
+							</p:inputText>
+							<p:selectOneButton value="#{clienteBean.alertaBaja_tipo}">
+								<f:selectItem itemLabel="Horas" itemValue="1" />
+								<f:selectItem noSelectionOption="true" itemLabel="Dias"
+									itemValue="2" />
+							</p:selectOneButton>
+
+						</h:panelGrid>
+					</p:fieldset>
+
+				</h:panelGrid>
+
+
+				<p:commandButton value="Crear" id="btnAll"
+					actionListener="#{clienteBean.crearCliente}" update="growlCliente panelCliente"
+					 />
+
+
+			</p:panel>
+
+
+		</h:form>
+
+
+
+
+
+	</ui:define>
+</ui:composition>

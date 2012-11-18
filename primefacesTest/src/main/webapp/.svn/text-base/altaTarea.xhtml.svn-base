@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Alta Tarea</ui:define>
+	<ui:define name="body">
+		<link rel="stylesheet"
+			href="#{request.contextPath}/css/site_clientes.css" type="text/css" />
+
+		<h:form enctype="multipart/form-data">
+
+
+			<p:blockUI block="panel3" trigger="btnAll2">  
+			        Cargando<br />
+				<p:graphicImage value="/imagenes/ajax-loader.gif" />
+			</p:blockUI>
+
+			<script type="text/javascript">
+			function limpiarForm(){        				
+					$('.Name').attr('value','');
+			}
+			</script>
+
+			<p:panel id="panel3" header="Nueva Tarea" style="margin-bottom:10px;">
+				<p:panelGrid columns="2" cellpadding="5">
+					<p:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel for="select1" value="Cliente: *"
+							style="font-weight:bold" />
+
+						<p:selectOneMenu id="select1" value="#{tareaBean.cliente}"
+							effect="fade" style="width:200px" required="true"
+							requiredMessage="Debe ingresar un cliente.">
+							<f:selectItem itemLabel="Elija uno" itemValue="" />
+							<f:selectItems value="#{clienteBean.listarClientes()}" />
+							<p:ajax process="select1" update="usuario" event="change"
+								listener="#{tareaBean.listarUsuarios()}" />
+						</p:selectOneMenu>
+
+						<h:outputLabel for="usuario" value="Usuario: *"
+							style="font-weight:bold" />
+						<p:selectOneMenu id="usuario" value="#{tareaBean.usuario}"
+							effect="fade" style="width:200px" required="true" var="users"
+							requiredMessage="Debe ingresar un usuario.">
+							<f:selectItem itemLabel="Elija uno" itemValue="" />
+							<f:selectItems value="#{tareaBean.listaUsuarios}" var="user"
+								itemLabel="#{user.nombre} - #{user.mail}"
+								itemValue="#{user.mail}" />
+						</p:selectOneMenu>
+
+						<h:outputLabel for="tipo" value="Tipo:" style="font-weight:bold" />
+
+						<p:selectOneMenu id="tipo" value="#{tareaBean.tipo}"
+							style="width:200px">
+							<f:selectItem itemLabel="Incidente" itemValue="1" />
+							<f:selectItem itemLabel="Pedido de cambio" itemValue="2" />
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+					<p:panelGrid columns="2" cellpadding="5">
+
+						<h:outputLabel for="clasificacion" value="Clasificación:"
+							style="font-weight:bold" />
+
+						<p:selectOneMenu id="clasificacion"
+							value="#{tareaBean.clasificacion}" style="width:200px">
+							<f:selectItem itemLabel="" itemValue="" />
+							<f:selectItems value="#{tareaBean.listarCategorias()}" />
+						</p:selectOneMenu>
+
+						<h:outputLabel for="grupo" value="Grupo:" style="font-weight:bold" />
+
+						<p:selectOneMenu id="grupo" value="#{tareaBean.grupo}"
+							effect="fade" style="width:200px">
+							<f:selectItem itemLabel="" itemValue="" />
+							<f:selectItems value="#{tareaBean.listarGrupos()}" />
+						</p:selectOneMenu>
+
+						<h:outputLabel for="responsable" value="Responsable:"
+							style="font-weight:bold" />
+
+						<p:selectOneMenu id="responsable" value="#{tareaBean.responsable}"
+							effect="fade" style="width:200px" var="resps">
+							<f:selectItem itemLabel="" itemValue="" />
+							<f:selectItems
+								value="#{tareaBean.listarTecnicosAdministradoresSuper()}"
+								var="resp" itemLabel="#{resp.nombre} - #{resp.mail}"
+								itemValue="#{resp.mail}" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+				</p:panelGrid>
+
+				<p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="Prioridad: " style="font-weight:bold" />
+					<p:selectOneButton value="#{tareaBean.prioridad}">
+						<f:selectItem itemLabel="Alta" itemValue="1" />
+						<f:selectItem itemLabel="Media" itemValue="2" />
+						<f:selectItem noSelectionOption="true" itemLabel="Baja"
+							itemValue="3" />
+					</p:selectOneButton>
+
+				</p:panelGrid>
+
+				<p:separator id="separator" />
+
+				<p:panelGrid id="grid" columns="2" cellpadding="10">
+					<h:outputLabel for="asunto" value="Asunto: *" required="true"
+						style="font-weight:bold"
+						requiredMessage="Debe ingresar un asunto." />
+					<p:inputText id="asunto" value="#{tareaBean.asunto}"
+						styleClass="Name" requiredMessage="Debe ingresar un asunto."
+						required="true" size="60" />
+
+					<h:outputLabel for="descripcion" value="Descripción: *"
+						required="true" style="font-weight:bold" />
+					<p:inputTextarea id="descripcion" value="#{tareaBean.descripcion}"
+						styleClass="Name" rows="6" cols="60" required="true"
+						requiredMessage="Debe ingresar una descripción para la tarea." />
+
+
+
+				</p:panelGrid>
+
+				
+					<p:growl id="growlArch" showDetail="true" />
+					<p:fileUpload fileUploadListener="#{tareaBean.uploadArchivo}"
+						allowTypes="/(\.|\/)(bmp|txt|xls|docx|doc|odf|pdf|gif|jpe?g|png)$/"
+						sizeLimit="100000" invalidFileMessage="fichero inválido"
+						invalidSizeMessage="ha excedido el tamaño máximo permitido"
+						label="Seleccionar archivo" update="growlArch"
+						cancelLabel="Cancelar" uploadLabel="Subir" />
+			
+
+			</p:panel>
+
+			<p:growl id="growlTarea" />
+
+
+			<p:commandButton value="Crear" id="btnAll2"
+				update="growlTarea panel3"
+				actionListener="#{tareaBean.crearTarea(sesionBean.mail)}">
+
+			</p:commandButton>
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

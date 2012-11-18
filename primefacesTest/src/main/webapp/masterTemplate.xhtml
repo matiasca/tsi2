@@ -1,0 +1,62 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title><ui:insert name="title">Default title</ui:insert></title>
+	<link rel="stylesheet"
+		href="#{request.contextPath}/css/template-style.css" type="text/css" />
+
+	<p:panel size="100"
+		style="margin: 0px auto 0 auto ;border: 2px solid #222;height: 100px;width:960px;background: url(imagenes/fondoHeader.jpg)">
+		<ui:include name="headerGeneral" src="/headerGeneral.xhtml" />
+	</p:panel>
+
+
+	<p:panelGrid style="margin: 0px auto 0 auto;" columns="3">
+		<h:form>
+			<p:inputText value="#{buscarTareaBean.cadena}" />
+			<p:commandButton value="Buscar Tarea" action="#{buscarTareaBean.buscarTarea}"
+				 icon="ui-icon-circle-plus"
+				style="width: 200px;"></p:commandButton>
+		</h:form>
+
+		<p:commandButton value="Inicio" action="homeTecnico"
+			icon="ui-icon-circle-plus" style="width: 200px;"></p:commandButton>
+		<p:commandButton value="Crear tarea"
+			action="#{tareaBean.nuevaTarea()}" icon="ui-icon-circle-plus"
+			style="width: 200px;"></p:commandButton>
+	</p:panelGrid>
+
+
+</h:head>
+<h:body>
+
+	<p:growl></p:growl>
+	<p:panel
+		style="background:inherit;margin: 0px auto 0 auto; height:470px;width: 960px;">
+
+		<p:panel header="Menu Principal"
+			style="font-size:18px;margin-top: 2px;height: 460px;width: 200px;float: left;text-align: justify;">
+
+
+			<h:form>
+				<ui:include src="#{sesionBean.mostrarMenu()}" />
+			</h:form>
+			<p:panel rendered="#{sesionBean.esAcsaUsuario()}"
+				style="background: none repeat scroll 0 0 #333333;border: medium none;padding: 0;width: 200px;">
+
+			</p:panel>
+		</p:panel>
+
+
+		<p:panel size="100" style="margin-top: 2px;width:740px;float: right;">
+			<ui:insert name="body">Bienvenido!!!</ui:insert>
+		</p:panel>
+
+	</p:panel>
+</h:body>
+
+</html>

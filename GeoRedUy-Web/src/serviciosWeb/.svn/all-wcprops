@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/ens/svn/repos/tsi210/!svn/ver/296/GeoRedUy-Web/src/serviciosWeb
+END
+IUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ens/svn/repos/tsi210/!svn/ver/296/GeoRedUy-Web/src/serviciosWeb/IUsuario.java
+END
+ILogin.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/ens/svn/repos/tsi210/!svn/ver/296/GeoRedUy-Web/src/serviciosWeb/ILogin.java
+END
+IOferta.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ens/svn/repos/tsi210/!svn/ver/296/GeoRedUy-Web/src/serviciosWeb/IOferta.java
+END
+IEvento.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ens/svn/repos/tsi210/!svn/ver/274/GeoRedUy-Web/src/serviciosWeb/IEvento.java
+END
+ISitioInteres.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ens/svn/repos/tsi210/!svn/ver/296/GeoRedUy-Web/src/serviciosWeb/ISitioInteres.java
+END
+PuntoEntradaWS.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/ens/svn/repos/tsi210/!svn/ver/258/GeoRedUy-Web/src/serviciosWeb/PuntoEntradaWS.java
+END
+INotificacion.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ens/svn/repos/tsi210/!svn/ver/296/GeoRedUy-Web/src/serviciosWeb/INotificacion.java
+END

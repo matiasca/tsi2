@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear"
+					href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+
+		<pm:content>
+			<!-- Agregar tarea -->
+			<p:button href="#main?reverse=true" icon="gear" value="Agregar Tarea" />
+
+			<!-- Historial -->
+			<h:outputLabel value="Historial: " />
+			<p:dataList type="inset" value="{detalleTareaBean.historial}"
+				var="tarea">
+				<h:outputLink value="#main">
+					{tarea.fecha} - {tarea.autor}<br />{tarea.descripcion}
+				</h:outputLink>
+			</p:dataList>
+
+			<!-- Tareas Pendientes -->
+			<p:button href="#main?reverse=true" icon="back"
+				value="Tareas Pendientes" />
+
+
+		</pm:content>
+	</pm:page>
+</f:view>

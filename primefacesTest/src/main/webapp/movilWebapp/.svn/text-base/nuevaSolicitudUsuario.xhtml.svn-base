@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA" id="pagina">
+		<pm:view id="nuevaSolicitud" swatch="c">
+			<pm:header title="Mis Solicitudes">
+				<f:facet name="right">
+					<p:commandButton value="Salir" action="#{loginBean.cerrarSesion}" />
+				</f:facet>
+				<pm:navBar>
+					<p:button value="Nueva" icon="plus" href="main?reverse=true"
+						update="pm:pagina" styleClass="ui-btn-active" />
+					<p:button value="Mis solicitudes" icon="home"
+						href="misSolicitudesUsuario.xhtml"
+						action="#{tablaIncidenteBean.listarIncidentes()}"
+						styleClass="ui-btn-inactive" />
+				</pm:navBar>
+			</pm:header>
+			<pm:content>
+				<h:form id="nuevaSolicitudForm">
+					<h:panelGrid id="grid" columns="1">
+
+						<h:outputLabel for="asunto" value="Asunto*:"
+							style="font-weight:bold" />
+						<p:inputText id="asunto" value="#{tareaBean.asunto}"
+							required="true" requiredMessage="Debe ingresar un asunto."
+							styleClass="Name" size="70" />
+
+						<h:panelGrid id="gridPreguntas" columns="2">
+							<h:outputLabel
+								value="¿Este incidente le permite continuar con su trabajo?"
+								style="font-weight:bold" />
+
+
+							<h:selectOneRadio value="#{tareaBean.pregunta1}">
+								<f:selectItem itemLabel="Si" itemValue="1" />
+								<f:selectItem itemLabel="No" itemValue="2" />
+							</h:selectOneRadio>
+
+							<h:outputLabel value="¿La falla le ocurrió solo a usted?"
+								style="font-weight:bold" />
+
+							<h:selectOneRadio value="#{tareaBean.pregunta2}">
+								<f:selectItem itemLabel="Si" itemValue="1" />
+								<f:selectItem itemLabel="No" itemValue="2" />
+							</h:selectOneRadio>
+							
+						</h:panelGrid>
+
+						<p:separator />
+						<h:outputLabel for="descripcion" value="Descripcion*:"
+							style="font-weight:bold" />
+						<p:inputTextarea id="descripcion" required="true"
+							value="#{tareaBean.descripcion}" rows="6" cols="70"
+							requiredMessage="Debe ingresar una descripcion." />
+
+						<p:commandButton value="Crear" id="btnAll"
+							actionListener="#{tareaBean.crearIncidente(sesionBean.mail)}" />
+
+					</h:panelGrid>
+				</h:form>
+			</pm:content>
+		</pm:view>
+	</pm:page>
+</f:view>
+
+

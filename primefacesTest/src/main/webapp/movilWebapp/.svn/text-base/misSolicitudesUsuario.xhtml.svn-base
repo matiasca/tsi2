@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA" id="pagina"> 
+		<!-- Mis solcitudes -->		
+		<pm:view id="misSolicitudes" swatch="c">
+            <pm:header title="Mis Solicitudes">
+				<f:facet name="right">
+				 	<p:commandButton value="Salir" action="#{loginBean.cerrarSesion}" />
+				 </f:facet>
+				<pm:navBar>
+					<p:button value="Nueva" icon="plus" href="nuevaSolicitudUsuario.xhtml" update="pm:pagina" styleClass="ui-btn-inactive"/>
+					<p:button value="Mis solicitudes" icon="home" href="#main?reverse=true" update="pm:pagina" styleClass="ui-btn-active"/>
+				</pm:navBar>
+			</pm:header>
+
+            <pm:content>
+                <h:form id="misSolicitudesForm">
+                	<h:outputText value="No tiene incidentes"
+							rendered="#{empty tablaIncidenteBean.incidentes}"
+							style="font-size:20px;" />
+                    <p:dataList  value="#{tablaIncidenteBean.incidentes}" var="inci"
+                    				rendered="#{not empty tablaIncidenteBean.incidentes}">
+                        <p:column>
+                            <p:commandLink value="#{inci.asunto}" update=":solicitudForm" action="pm:vistaSolicitud">
+                                <f:setPropertyActionListener value="#{inci}" target="#{tablaIncidenteBean.incidenteSeleccionado}" />
+                            </p:commandLink>
+                       	</p:column>
+		           </p:dataList>
+                </h:form>
+            </pm:content>
+        </pm:view>
+
+        <!-- Solicitud Seleccionada -->
+        <pm:view id="vistaSolicitud" swatch="c">
+            <pm:header title="Mis Solicitudes">
+				<f:facet name="right">
+				 	<p:commandButton value="Salir" action="#{loginBean.cerrarSesion}" />
+				 </f:facet>
+				 <f:facet name="left">
+				 	<p:button value="Back" icon="back" href="#misSolicitudes?reverse=true"/>
+		 		</f:facet>
+			</pm:header>
+
+            <pm:content>
+                <h:form id="solicitudForm">
+                	Solicitud:
+					<pm:field>
+						<h:outputLabel value="Asunto: " />
+						<h:outputLabel value="#{tablaIncidenteBean.incidenteSeleccionado.getAsunto()}" />
+					</pm:field>
+	
+					<!-- FECHA -->
+					<pm:field>
+						<h:outputLabel value="Fecha: " />
+						<h:outputLabel value="#{tablaIncidenteBean.incidenteSeleccionado.getFecha()}" />
+					</pm:field>
+	
+					<!-- ESTADO -->
+					<pm:field>
+						<h:outputLabel value="Estado: " />
+						<h:outputLabel value="#{tablaIncidenteBean.incidenteSeleccionado.getEstado()}" />
+					</pm:field>
+	
+					<!-- DESCRIPCION -->
+					<pm:field>
+						<h:outputLabel for="descripcion" value="Descripcion: " />
+						<h:outputText id="descripcion" value="#{tablaIncidenteBean.incidenteSeleccionado.getDescripcion()}" />
+					</pm:field>
+	
+					<p:separator /> 
+                   
+                </h:form>
+            </pm:content>
+        </pm:view>
+		
+	</pm:page>
+</f:view>

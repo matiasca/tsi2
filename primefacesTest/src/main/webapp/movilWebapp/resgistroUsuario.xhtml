@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear"
+					href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+
+		<pm:content>
+
+			<p:panel header="Mis datos: ">
+
+				<pm:field>
+					<h:outputLabel for="nombre" value="Nombre: *"
+						style="font-weight:bold" />
+					<p:inputText id="nombre" value="#{registroUsuarioBean.nombre}"
+						requiredMessage="Debe ingresar su nombre." required="true"
+						size="30" />
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="apellido" value="Apellido: *"
+						style="font-weight:bold" />
+					<p:inputText id="apellido" value="#{registroUsuarioBean.apellido}"
+						requiredMessage="Debe ingresar su apellido." required="true"
+						size="30" />
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="telefono" value="Telefono: *"
+						style="font-weight:bold" />
+					<p:inputText id="telefono" value="#{registroUsuarioBean.telefono}"
+						requiredMessage="Debe ingresar un teléfono de contacto."
+						validatorMessage="Teléfono invalido." required="true" size="30">
+						<f:validateRegex pattern="[0-9 ]*" />
+					</p:inputText>
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="interno" value="Interno: "
+						style="font-weight:bold" />
+					<p:inputText id="interno" value="#{registroUsuarioBean.interno}"
+						size="30" validatorMessage="Interno invalido.">
+						<f:validateRegex pattern="[0-9 ]*" />
+					</p:inputText>
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="pwd1" value="Contraseña: *" />
+					<p:password id="pwd1" value="#{registroUsuarioBean.contrasena}"
+						match="pwd2" label="Contraseña 1" required="true"
+						requiredMessage="Ingrese una contraseña" />
+				</pm:field>
+
+				<pm:field>
+					<h:outputLabel for="pwd2" value="Confirmación Contraseña: *" />
+					<p:password id="pwd2" value="#{registroUsuarioBean.contrasena}"
+						label="Contraseña 2" />
+				</pm:field>
+				
+				<button value="Registrar"></button>
+
+			</p:panel>
+		</pm:content>
+	</pm:page>
+</f:view>
+
+
+

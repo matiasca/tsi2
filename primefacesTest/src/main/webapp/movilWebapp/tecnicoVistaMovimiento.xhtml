@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear"
+					href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+		<pm:content>
+			<h:form>
+				<p:panel header="Movimiento: ">
+					<h:panelGrid columns="2">
+						<pm:field>
+							<h:outputLabel value="Fecha: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.movimiento.fecha}" />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="Autor: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.movimiento.autor}" />
+						</pm:field>
+					</h:panelGrid>
+					<pm:field>
+						<h:outputLabel value="Descripción: " />
+					</pm:field>
+					<pm:field>
+						<h:outputLabel value="#{detalleTareaBean.movimiento.descripcion}" />
+					</pm:field>
+					<h:panelGrid columns="2">
+						<pm:field>
+							<h:outputLabel value="Hora Inicio: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.movimiento.horaInicio}" />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="Hora Fin: " />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="#{detalleTareaBean.movimiento.horaFin}" />
+						</pm:field>
+					</h:panelGrid>
+				</p:panel>
+				<p:separator></p:separator>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Tareas Pendientes"></p:commandButton>
+					<p:commandButton value="Historial"></p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</pm:content>
+	</pm:page>
+</f:view>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Reportes</ui:define>
+	<ui:define name="body">
+
+
+
+		<p:outputPanel>
+			<h:form>
+
+				<p:growl id="growlReporte" />
+
+				<p:blockUI block="panelReporte" trigger="botonRegistrar">  
+			        Generando reporte<br />
+					<p:graphicImage value="/imagenes/ajax-loader.gif" />
+				</p:blockUI>
+				<p:panel id="panelReporte" style="font-weight:bold">
+					<f:facet name="header"> Nuevo Reporte</f:facet>
+					<p:panelGrid columns="3" cellspacing="30" cellpadding="8"
+						styleClass="gridreporte"
+						style="position:relative;left:50px;width:660px">
+
+						<h:outputText value="Tipo de reporte " style="font-weight:bold" />
+
+						<h:outputText value="Formato de reporte " style="font-weight:bold" />
+						
+						<h:outputText value="" style="font-weight:bold" />
+						<p:selectOneRadio id="customRadio" style="line-height:20px"
+							value="#{reporteBean.tipo}" layout="pageDirection">
+							<f:selectItem itemLabel="Por técnico"
+								itemValue="REPORTE_TAREAS_POR_TECNICO" />
+							<f:selectItem itemLabel="Por cliente"
+								itemValue="REPORTE_TAREAS_POR_CLIENTE" />
+							<f:selectItem itemLabel="Genérico"
+								itemValue="REPORTE_TAREAS_GENERAL" />
+						</p:selectOneRadio>
+
+
+
+						<p:selectOneRadio style="line-height:20px"
+							value="#{reporteBean.formato}" layout="pageDirection">
+							<f:selectItem itemLabel="XLS" itemValue="XLS" />
+							<f:selectItem itemLabel="PDF" itemValue="PDF" />
+
+						</p:selectOneRadio>
+						
+						
+						
+							<p:commandButton value="Generar reporte" id="botonRegistrar"
+							ajax="false" actionListener="#{reporteBean.crearReporte}"
+							update="growlReporte">
+							<p:fileDownload value="#{reporteBean.file}" />
+						</p:commandButton>
+					</p:panelGrid>
+
+
+
+
+					<h:panelGrid columns="2">
+						<p:panelGrid columns="4" styleClass="gridreporte">
+							<f:facet name="header"> Fitros</f:facet>
+
+
+
+							<h:outputText value="Desde: " style="font-weight:bold" />
+							<p:calendar value="#{tablaTareaBean.fechaInicio}"
+								pattern="dd/MM/yyyy" />
+
+							<h:outputText value="Hasta: " style="font-weight:bold" />
+							<p:calendar value="#{tablaTareaBean.fechaFin}"
+								pattern="dd/MM/yyyy" />
+
+
+
+
+
+
+
+							<h:outputText value="Cliente: " style="font-weight:bold" />
+							<p:selectOneMenu value="#{reporteBean.cliente}"
+								style="width:140px">
+								<f:selectItem itemLabel="" itemValue="" />
+								<f:selectItems value="#{reporteBean.listarClientes()}" />
+							</p:selectOneMenu>
+
+
+
+							<h:outputText value="Técnico: " style="font-weight:bold" />
+							<p:selectOneMenu value="#{reporteBean.tecnico}"
+								style="width:140px" var="resps">
+								<f:selectItem itemLabel="" itemValue="" />
+								<f:selectItems
+									value="#{reporteBean.listarTecnicosAdministradoresSuper()}"
+									var="resp" itemLabel="#{resp.nombre} - #{resp.mail}"
+									itemValue="#{resp.mail}" />
+							</p:selectOneMenu>
+
+
+
+							<h:outputLabel for="usuario" value="Estado: "
+								style="font-weight:bold" />
+							<p:selectOneMenu value="#{reporteBean.estado}"
+								style="width:140px">
+								<f:selectItem itemLabel="" itemValue="" />
+								<f:selectItem itemLabel="Asignada" itemValue="ASIGNADA" />
+								<f:selectItem itemLabel="Cancelada" itemValue="CANCELADA" />
+								<f:selectItem itemLabel="Finalizada" itemValue="FINALIZADA" />
+								<f:selectItem itemLabel="Ingresada" itemValue="INGRESADA" />
+								<f:selectItem itemLabel="Pendiente cliente"
+									itemValue="PENDIENTE" />
+								<f:selectItem itemLabel="Solucionada" itemValue="SOLUCIONADA" />
+							</p:selectOneMenu>
+
+
+
+
+						</p:panelGrid>
+
+					
+					</h:panelGrid>
+				</p:panel>
+
+			</h:form>
+
+		</p:outputPanel>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<link rel="stylesheet" href="#{request.contextPath}/css/menuStyle.css"	type="text/css" />
+    </h:head>
+    <h:body>	
+    	<h:form>
+			<p:accordionPanel style="width:250px;padding:0px">  
+			    <p:tab title="Administradores" style="width:250px;padding:0px">
+				    <h:panelGrid columns="1" cellpadding="5"> 
+			            <p:commandButton value="Nuevo" style="width:235px;padding:0px" action="#{SesionBean.nuevoAdmin()}" icon="ui-icon-circle-plus"></p:commandButton> 
+			            <p:commandButton value="Eliminar" style="width:235px;padding:0px" action="#{SesionBean.nuevoAdmin()}" icon="ui-icon-circle-plus"></p:commandButton>
+					</h:panelGrid>
+			    </p:tab>
+			    <p:tab title="Tecnicos" style="width:250px;padding:0px">
+				    <h:panelGrid columns="1" cellpadding="5"> 
+			            <p:commandButton value="Nuevo" style="width:235px;padding:0px" action="#{SesionBean.nuevoAdmin()}" icon="ui-icon-circle-plus"></p:commandButton> 
+			            <p:commandButton value="Eliminar" style="width:235px;padding:0px" action="#{SesionBean.nuevoAdmin()}" icon="ui-icon-circle-plus"></p:commandButton>
+					</h:panelGrid>
+			    </p:tab>
+			    <p:tab title="Clientes" style="width:250px;padding:0px">
+				    <h:panelGrid columns="1" cellpadding="5"> 
+			            <p:commandButton value="Nuevo" style="width:235px;padding:0px" action="#{SesionBean.nuevoAdmin()}" icon="ui-icon-circle-plus"></p:commandButton> 
+			            <p:commandButton value="Eliminar" style="width:235px;padding:0px" action="#{SesionBean.nuevoAdmin()}" icon="ui-icon-circle-plus"></p:commandButton>
+					</h:panelGrid>
+			    </p:tab>
+			</p:accordionPanel> 
+		</h:form> 
+    </h:body>
+
+</html>

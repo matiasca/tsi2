@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+    <meta http-equiv="X-UA-Compatible" content="EmulateIE8"/>
+	<meta http-equiv="cache-control" content="no-cache"/>
+<h:head>
+	<title><ui:insert name="title">Default title</ui:insert></title>
+	<link rel="stylesheet"
+		href="#{request.contextPath}/css/template-style.css" type="text/css" />
+
+	<p:panel size="100"
+		style="margin: 0px auto 0 auto ;border: 2px solid #222;height: 100px;width:900px;background: url(imagenes/fondoHeader.jpg)">
+		<ui:include name="headerGeneral" src="/headerGeneral.xhtml" />
+	</p:panel>
+
+</h:head>
+<h:body >
+	<p:panel
+		style="margin: 5px auto 0 auto;width: 900px;height:470px;background:white ;">
+
+
+		<ui:insert name="body">Bienvenido!!!</ui:insert>
+
+
+	</p:panel>
+</h:body>
+
+</html>

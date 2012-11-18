@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+	
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear" href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+		
+		<pm:content>	
+			<p:panel header="Solicitud: ">
+				<!-- ASUNTO -->
+				<pm:field>
+					<h:outputLabel value="Asunto: " />
+					<h:outputLabel value="#{detalleTareaBean.asunto}" />
+				</pm:field>
+
+				<!-- FECHA -->
+				<pm:field>
+					<h:outputLabel value="Fecha: " />
+					<h:outputLabel value="#{detalleTareaBean.fecha}" />
+				</pm:field>
+
+				<!-- ESTADO -->
+				<pm:field>
+					<h:outputLabel value="Estado: " />
+					<h:outputLabel value="#{detalleTareaBean.estado}" />
+				</pm:field>
+
+				<!-- DESCRIPCION -->
+				<pm:field>
+					<h:outputLabel for="descripcion" value="Descripcion: " />
+					<h:outputText value="#{detalleTareaBean.descripcion}" />
+				</pm:field>
+
+				<p:separator />
+			</p:panel>
+		</pm:content>
+	</pm:page>
+</f:view>
+
+
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form>
+	<p:panel  style="opacity: 0.5;float:right;" >
+			<h:outputLabel value="#{sesionBean.nombre}" /> |
+			<p:commandLink action="#{sesionBean.perfil}">  
+        		<h:outputText value="perfil" />  
+   			</p:commandLink>  |
+			<h:commandLink value="cerrar sesión" action="#{loginBean.cerrarSesion()}">  
+        		
+   			</h:commandLink>  
+
+	</p:panel>
+	</h:form>
+</ui:composition>

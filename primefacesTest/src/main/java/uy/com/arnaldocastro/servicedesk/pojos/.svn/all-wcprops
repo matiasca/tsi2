@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/pis2012fing/!svn/ver/484/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos
+END
+ModificarGrupoBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/pis2012fing/!svn/ver/460/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/ModificarGrupoBean.java
+END
+BajaGrupoBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/pis2012fing/!svn/ver/432/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/BajaGrupoBean.java
+END
+ReporteBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/pis2012fing/!svn/ver/401/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/ReporteBean.java
+END
+PerfilBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/pis2012fing/!svn/ver/336/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/PerfilBean.java
+END
+ClienteBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/pis2012fing/!svn/ver/362/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/ClienteBean.java
+END
+CambioElementoBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/pis2012fing/!svn/ver/468/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/CambioElementoBean.java
+END
+MovimientoBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/pis2012fing/!svn/ver/472/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/MovimientoBean.java
+END
+UsuarioBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/pis2012fing/!svn/ver/362/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/UsuarioBean.java
+END
+DetalleTareaBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/pis2012fing/!svn/ver/461/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/DetalleTareaBean.java
+END
+VerDetallesElementoCMDBBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/pis2012fing/!svn/ver/484/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/VerDetallesElementoCMDBBean.java
+END
+TareaBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/pis2012fing/!svn/ver/433/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/TareaBean.java
+END
+menuSuperAdminBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/pis2012fing/!svn/ver/74/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/menuSuperAdminBean.java
+END
+BuscarTareaBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/441/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/BuscarTareaBean.java
+END
+FinalizarTareaBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/pis2012fing/!svn/ver/472/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/FinalizarTareaBean.java
+END
+Cliente.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/pis2012fing/!svn/ver/46/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/Cliente.java
+END
+CategoriaBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/pis2012fing/!svn/ver/432/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/CategoriaBean.java
+END
+GestionCMDBBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/468/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/GestionCMDBBean.java
+END
+TablaTareaBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/pis2012fing/!svn/ver/427/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/TablaTareaBean.java
+END
+SesionBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/pis2012fing/!svn/ver/462/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/SesionBean.java
+END
+verClienteBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/pis2012fing/!svn/ver/365/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/verClienteBean.java
+END
+TablaGrupoBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/pis2012fing/!svn/ver/432/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/TablaGrupoBean.java
+END
+BajaClienteBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/420/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/BajaClienteBean.java
+END
+BajaTecnicoBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/420/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/BajaTecnicoBean.java
+END
+BajaUsuarioBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/420/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/BajaUsuarioBean.java
+END
+TablaIncidenteBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/pis2012fing/!svn/ver/467/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/TablaIncidenteBean.java
+END
+RegistroUsuarioBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/pis2012fing/!svn/ver/408/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/RegistroUsuarioBean.java
+END
+BajaAdminBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/pis2012fing/!svn/ver/420/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/BajaAdminBean.java
+END
+LoginBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/pis2012fing/!svn/ver/452/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/pojos/LoginBean.java
+END

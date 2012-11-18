@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/masterTemplateUsuario.xhtml">
+
+	<ui:define name="title">Home</ui:define>
+	<ui:define name="body">
+		<script type="text/javascript">
+		function limpiarForm(){        				
+				$('.Name').attr('value','');
+				$('.num').attr('value','-1');
+		}
+
+		$(document).ready(function(){
+		    $('.fechaDialog').text('');
+			$('.estadoDialog').text('');
+			$('.asuntoDialog').text('');
+            $('.descripcionDialog').text('');
+		});
+		
+	    function handleDialogSubmit(xhr, status, args) {
+	        if (args.validationFailed) {
+	        	dialogoRegistro12.show();
+	        } else {
+		        location.reload(true);
+	        	dialogoRegistro12.hide();
+	        }
+	    }
+    	    
+	    function fillDialog(){
+	    	//chequeo que sea internet explorer
+	    	if ($.browser.msie ){
+	    		var filas=$('.ui-state-highlight ').children().children();
+   			    $('.fechaDialog').text($(filas[0]).text());
+				$('.estadoDialog').text($(filas[2]).text());
+				$('.asuntoDialog').text($(filas[1]).text());
+                $('.descripcionDialog').text($(filas[3]).text());
+		    }
+		}
+
+		function closeDialog(){
+	    	if ( $.browser.msie){
+		    	if ( $.browser.version == "7" ){
+	            	location.reload(true);
+		    	}
+	    	}
+			dialogoVerIncidente.hide();
+		}
+
+		 
+</script>
+
+		<h:form id="form">
+			<p:dialog id="dialogoRegistro" header="Registro:"
+				widgetVar="dialogoRegistro12" resizable="true" showEffect="clip"
+				visible="#{sesionBean.isNuevoUsuario()}" closable="false"
+				modal="false" hideEffect="clip">
+				<p:panel>
+					<h:panelGrid cellpadding="2">
+						<h:outputLabel
+							value="Bienvenido al sitio de reclamos de Arnaldo C. Castro S.A."
+							style="font-size:17px;font-weight:bold" />
+						<h:outputLabel
+							value="Por favor ingrese los siguienes datos para ingresar al sistema:"
+							style="font-size:15px;font-weight:bold" />
+					</h:panelGrid>
+
+					<p:panelGrid id="registroForm" columns="2" cellpadding="5">
+
+						<h:outputLabel for="nombre" value="Nombre: *"
+							style="font-weight:bold" />
+						<p:inputText id="nombre" value="#{registroUsuarioBean.nombre}"
+							requiredMessage="Debe ingresar su nombre." required="true"
+							size="30" />
+
+
+						<h:outputLabel for="apellido" value="Apellido: *"
+							style="font-weight:bold" />
+						<p:inputText id="apellido" value="#{registroUsuarioBean.apellido}"
+							requiredMessage="Debe ingresar su apellido." required="true"
+							size="30" />
+
+						<h:outputLabel for="telefono" value="Telefono: *"
+							style="font-weight:bold" />
+						<p:inputText id="telefono" value="#{registroUsuarioBean.telefono}"
+							requiredMessage="Debe ingresar un teléfono de contacto."
+							validatorMessage="Teléfono invalido." required="true" size="30">
+							<f:validateRegex pattern="[0-9 ]*" />
+						</p:inputText>
+
+						<h:outputLabel for="interno" value="Interno: "
+							style="font-weight:bold" />
+						<p:inputText id="interno" value="#{registroUsuarioBean.interno}"
+							size="30" validatorMessage="Interno invalido.">
+							<f:validateRegex pattern="[0-9 ]*" />
+						</p:inputText>
+
+						<h:outputLabel for="pwd1" value="Contraseña: *" />
+
+						<p:password id="pwd1" value="#{registroUsuarioBean.contrasena}"
+							match="pwd2" label="Contraseña 1" required="true"
+							requiredMessage="Ingrese una contraseña" />
+
+						<h:outputLabel for="pwd2" value="Confirmación Contraseña: *" />
+						<p:password id="pwd2" value="#{registroUsuarioBean.contrasena}"
+							label="Contraseña 2" />
+
+					</p:panelGrid>
+
+					<p:commandButton value="Registrarme" id="botonRegistrar"
+						actionListener="#{registroUsuarioBean.registrarUsuario}"
+						update="growlregistro"
+						oncomplete="handleDialogSubmit(xhr, status, args)" />
+				</p:panel>
+			</p:dialog>
+			<p:growl id="growlregistro" />
+		</h:form>
+
+
+		<p:tabView id="tab" effect="fade" widgetVar="tabViewVar"
+			effectDuration="normal" dynamic="false">
+
+
+			<p:blockUI block="panelAdmin" trigger="botonCrearTarea">  
+			        Cargando<br />
+				<p:graphicImage value="/imagenes/ajax-loader.gif" />
+			</p:blockUI>
+
+			<p:tab title="Nueva Solicitud" id="tab1">
+				<h:form id="form2" enctype="multipart/form-data">
+					<p:panel id="panelAdmin" style="margin-bottom:10px;">
+
+						<p:panelGrid id="grid" columns="2" cellpadding="10"
+							style=" margin: 10px auto auto;" styleClass="positionPanel">
+
+							<h:outputLabel for="asunto" value="Asunto: *"
+								style="font-weight:bold" />
+							<p:inputText id="asunto" value="#{tareaBean.asunto}"
+								required="true" requiredMessage="Debe ingresar un asunto."
+								styleClass="Name" size="70" />
+
+							<h:outputLabel for="descripcion" value="Descripción: *"
+								required="true" style="font-weight:bold" />
+							<p:inputTextarea id="descripcion" required="true"
+								value="#{tareaBean.descripcion}" rows="6" cols="70"
+								styleClass="Name"
+								requiredMessage="Debe ingresar una descripcion." />
+
+							<h:outputLabel
+								value="¿Este incidente le permite continuar con su trabajo?"
+								style="font-weight:bold" />
+
+							<p:selectOneButton styleClass="num"
+								value="#{tareaBean.pregunta1}">
+								<f:selectItem itemLabel="Si" itemValue="1" />
+								<f:selectItem itemLabel="No" itemValue="2" />
+							</p:selectOneButton>
+
+							<h:outputLabel value="¿La falla le ocurrió solo a usted?"
+								style="font-weight:bold" />
+
+							<p:selectOneButton styleClass="num"
+								value="#{tareaBean.pregunta2}">
+								<f:selectItem itemLabel="Si" itemValue="1" />
+								<f:selectItem itemLabel="No" itemValue="2" />
+							</p:selectOneButton>
+
+
+							<p:growl id="growlArch" showDetail="true" />
+							<p:fileUpload fileUploadListener="#{tareaBean.uploadArchivo}"
+								allowTypes="/(\.|\/)(bmp|txt|xls|docx|doc|odf|pdf|gif|jpe?g|png)$/"
+								sizeLimit="100000" invalidFileMessage="fichero inválido"
+								invalidSizeMessage="ha excedido el tamaño máximo permitido"
+								label="Seleccionar archivo" update="growlArch"
+								cancelLabel="Cancelar" uploadLabel="Subir" disabled="#{sesionBean.isNuevoUsuario()}"/>
+
+							<p:commandButton value="Crear" id="btnAll"
+								update="growlIncidente :tab:form23:tablaIncidente grid"
+								action="#{tablaIncidenteBean.listarIncidentes()}"
+								actionListener="#{tareaBean.crearIncidente(sesionBean.mail)}" />
+
+						</p:panelGrid>
+
+						<p:growl id="growlIncidente" />
+					</p:panel>
+				</h:form>
+			</p:tab>
+
+			<p:tab title="Mis Solicitudes" id="tab2">
+				<h:form id="form23">
+					<p:dataTable id="tablaIncidente"
+						value="#{tablaIncidenteBean.incidentes}" var="row" rows="10"
+						rowKey="#{row}" paginator="true" paginatorPosition="bottom"
+						selectionMode="single"
+						selection="#{tablaIncidenteBean.incidenteSeleccionado}"
+						emptyMessage="Usted no tiene incidentes registrados.">
+
+						<p:ajax event="rowSelect" update=":tab:form23:dialogoInfo"
+							oncomplete="dialogoVerIncidente.show();"
+							onsuccess="dialogoVerIncidente.show();" />
+
+						<p:column headerText="Fecha" with="5">
+							<h:outputText value="#{row.fecha}" />
+						</p:column>
+
+						<p:column headerText="Asunto">
+							<h:outputText value="#{row.asunto}" />
+						</p:column>
+
+						<p:column headerText="Estado">
+							<h:outputText value="#{row.estado}" />
+						</p:column>
+						<p:column style="display:none">#{row.descripcion}</p:column>
+
+						<p:column  style="width:4%">
+							
+							<p:commandButton id="selectButton"
+								oncomplete="dialogoCancelar.show();"
+								onsuccess="dialogoCancelar.show();"
+								update=":tab:form23:dialogoInfo" icon="ui-icon-cancel"
+								title="View">
+								<f:setPropertyActionListener value="#{row.id}"
+									target="#{tablaIncidenteBean.incidenteSeleccionadoid}" />
+							</p:commandButton>
+
+						</p:column>
+
+					</p:dataTable>
+
+					<p:dialog id="dialogoVerIncidente" header="Indicente"
+						closable="false" width="450" widgetVar="dialogoVerIncidente"
+						resizable="true" onShow="fillDialog()" showEffect="clip"
+						modal="false" hideEffect="clip">
+
+						<h:panelGrid columns="1" cellpadding="100" id="dialogoInfo">
+
+							<h:panelGrid columns="2" cellpadding="500">
+
+								<h:outputLabel value="Fecha:" style="font-weight:bold" />
+								<h:outputLabel styleClass="fechaDialog"
+									value="#{tablaIncidenteBean.incidenteSeleccionado.getFecha()}" />
+
+								<h:outputLabel value="Estado: " style="font-weight:bold" />
+								<h:outputLabel styleClass="estadoDialog"
+									value="#{tablaIncidenteBean.incidenteSeleccionado.getEstado()}" />
+
+						
+
+								<h:outputLabel value="Asunto: " style="font-weight:bold" />
+								<h:outputLabel styleClass="asuntoDialog"
+									value="#{tablaIncidenteBean.incidenteSeleccionado.getAsunto()}" />
+
+								<h:outputLabel value="Descripcion: " style="font-weight:bold" />
+								<h:outputLabel styleClass="descripcionDialog" style="width: 100px;"
+									value="#{tablaIncidenteBean.incidenteSeleccionado.getDescripcion()}" />
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<p:commandButton value="Volver" onclick="closeDialog()"
+							immediate="true" />
+						<p:spacer width="400" height="10" />
+					
+
+					</p:dialog>
+
+					<p:confirmDialog id="dialogoCancelar"
+						message="¿Esta seguro que desea cancelar la solicitud?"
+						header="Cancelar solicitud" severity="alert"
+						widgetVar="dialogoCancelar">
+						<p:growl id="messages" />
+
+						
+						<p:commandButton id="confirm" value="Aceptar"
+							oncomplete="dialogoCancelar.hide()" update="tablaIncidente"
+							actionListener="#{tablaIncidenteBean.cancelarIncidente}" />
+
+						<p:commandButton id="decline" value="Cancelar" immediate="true"
+							onclick="dialogoCancelar.hide()" type="button" />
+
+					</p:confirmDialog>
+
+
+				</h:form>
+			</p:tab>
+
+		</p:tabView>
+
+
+	</ui:define>
+</ui:composition>

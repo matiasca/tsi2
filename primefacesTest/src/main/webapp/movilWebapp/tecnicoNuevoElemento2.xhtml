@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear"
+					href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+
+		<!-- Principal Nuevo elemento de configuracion -->
+		<pm:content>
+			<p:dataList type="inset">
+				<h:form>
+					<h:panelGrid columns="2">
+						<pm:field>
+							<h:outputLabel value="Cliente:" />
+						</pm:field>
+						<pm:field>
+							<h:outputLabel value="{sesion.idTarea.CLIENTE?}" />
+						</pm:field>
+
+						<h:outputLabel value="Descripcion" />
+						<p:inputText id="descripcion" value="#{elemento.descripcion}"
+							requiredMessage="Debe ingresar la descripcion." required="true" />
+
+						<h:outputLabel value="Código" />
+						<p:inputText id="codigo" value="#{elemento.codigo}"
+							requiredMessage="Debe ingresar el codigo" required="true" />
+
+						<h:outputLabel value="Ubicación" />
+						<p:inputText id="ubicacion" value="#{elemento.ubicacion}"
+							requiredMessage="Debe ingresar la ubicación" required="true" />
+					</h:panelGrid>
+					<button value="Registrar"></button>
+				</h:form>
+			</p:dataList>
+		</pm:content>
+	</pm:page>
+</f:view>
+
+
+

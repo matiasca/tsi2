@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Baja Tecnicos</ui:define>
+	<ui:define name="body">
+
+	<script type="text/javascript">
+    function handleDialogSubmit(xhr, status, args) {
+        if (args.validationFailed) {
+        	dialogoEliminarTecnico.show();
+        } else {
+        	dialogoEliminarTecnico.hide();
+        }
+    }
+	</script>
+		<h:form id="idform">
+		
+		
+
+			<p:growl id="growlCliente" />
+
+			<h:panelGrid id="panelf" columns="1" cellpadding="50">
+				<p:dataTable id="dataTable" var="cli"
+					value="#{bajaTecnicoBean.listaTecnicos}" rowKey="#{cli}"
+					selectionMode="single" selection="#{bajaTecnicoBean.mailTecnico}"
+					emptyMessage="No se encontraron resultados">
+
+					<p:ajax event="rowSelect" 
+						oncomplete="dialogoEliminarTecnico.show()"
+						 />
+
+					<p:column headerText="Nombre" filterBy="#{cli.nombre}">
+						<h:outputText value="#{cli.nombre}" />
+					</p:column>
+
+					<p:column headerText="Mail" filterBy="#{cli.mail}">
+						<h:outputText value="#{cli.mail}" />
+					</p:column>
+
+				</p:dataTable>
+			</h:panelGrid>
+
+			<p:confirmDialog id="dialogoEliminarTecnico"
+				message="¿Esta seguro que desea dar de baja al tecnico seleccionado?"
+				header="Baja de Tecnico" severity="alert" widgetVar="dialogoEliminarTecnico">
+				<p:growl id="messages" />
+				<p:commandButton id="confirm" value="Aceptar" update="messages dataTable"
+					oncomplete="dialogoEliminarTecnico.hide()"
+					actionListener="#{bajaTecnicoBean.borrarTecnico()}" />
+				
+				<p:commandButton id="decline" value="Cancelar"
+					onclick="dialogoEliminarTecnico.hide()" type="button" />
+
+			</p:confirmDialog>
+
+
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

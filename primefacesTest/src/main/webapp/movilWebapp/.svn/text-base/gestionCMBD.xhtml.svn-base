@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:view id="listaCMDB" swatch="c">
+			<pm:header title="Solicitudes">
+				<f:facet name="right">
+					<p:commandButton value="Salir" action="#{loginBean.cerrarSesion}" />
+				</f:facet>
+				<pm:navBar>
+					<p:button value="tareas" icon="home" href="#main?reverse=true"
+						update="pm:pagina" styleClass="ui-btn-inactive" />
+					<p:button value="Nueva" icon="plus" href="tecnicoNuevaTarea.xhtml"
+						update="pm:pagina" styleClass="ui-btn-inactive" />
+					<p:button value="CMDB" icon="plus" href="tecnicoGestionCMDB.xhtml"
+						update="pm:pagina" styleClass="ui-btn-active" />
+				</pm:navBar>
+			</pm:header>
+
+			<!-- Principal CMDB -->
+			<pm:content>
+				<!-- Filtro de cliente -->
+				<h:form id="idListaElementos">
+
+					<pm:field>
+						<h:outputLabel value="Cliente: " />
+						<h:selectOneMenu id="clienteCMDB"
+							value="#{gestionCMDBBean.cliente}">
+							<f:selectItem itemLabel="Elija uno" itemValue="" />
+							<f:selectItems value="#{clienteBean.listarClientes()}" />
+							<p:ajax process="clienteCMDB" update=":idListaElementos"
+								event="change"
+								listener="#{gestionCMDBBean.actualizarDatostabla()}" />
+						</h:selectOneMenu>
+					</pm:field>
+
+					<p:dataList type="inset"
+						rendered="#{gestionCMDBBean.showCMDBElements}"
+						value="#{gestionCMDBBean.listaElementosCMDBCLiente}"
+						var="elemento" filter="true">
+
+						<!-- Lista de CMDB -->
+						<p:commandLink
+							value="#{elemento.codigo} - #{elemento.descripcion}  #{elemento.ubicacion}"
+							update=":elementoForm" action="pm:vistaElementoCMDB">
+
+							<f:setPropertyActionListener value="#{elemento}"
+								target="#{sesionBean.elemento}" />
+							<f:setPropertyActionListener value="#{gestionCMDBBean.cliente}"
+								target="#{sesionBean.clienteCMDBselec}" />
+
+						</p:commandLink>
+
+					</p:dataList>
+				</h:form>
+			</pm:content>
+		</pm:view>
+
+
+		<!-- VISTA ELEMENTO CMDB -->
+		<pm:view id="vistaElementoCMDB" swatch="c">
+			<pm:header title="ACCSA">
+				<f:facet name="left">
+					<p:button value="Back" icon="back" href="pm:listaCMDB" />
+				</f:facet>
+				<f:facet name="right">
+					<p:button value="Cerrar Sesion" icon="gear"
+						href="#main?reverse=true" />
+				</f:facet>
+			</pm:header>
+			<pm:content>
+				<h:form id="elementoForm">
+					<pm:content>
+						<p:panel header="Elemento de Configuración ">
+							<h:panelGrid columns="2">
+								<pm:field>
+									<h:outputLabel value="Cliente: " />
+								</pm:field>
+								<pm:field>
+									<h:outputLabel value="#{sesionBean.clienteCMDBselec}" />
+								</pm:field>
+								<pm:field>
+									<h:outputLabel value="Código: " />
+								</pm:field>
+								<pm:field>
+									<h:outputLabel
+										value="#{verDetallesElementoCMDBBean.codigoElemento}" />
+								</pm:field>
+								<pm:field>
+									<h:outputLabel value="Descripcion: " />
+								</pm:field>
+								<pm:field>
+									<h:outputLabel
+										value="#{verDetallesElementoCMDBBean.descripcionElemento}" />
+								</pm:field>
+								<pm:field>
+									<h:outputLabel value="Ubicación: " />
+								</pm:field>
+								<pm:field>
+									<h:outputLabel
+										value="#{verDetallesElementoCMDBBean.ubicacionElemento}" />
+								</pm:field>
+							</h:panelGrid>
+							<p:panel header="Cambios">
+								<p:dataList
+									value="#{verDetallesElementoCMDBBean.historialElementoCMDB}"
+									var="elemHist"
+									rendered="#{verDetallesElementoCMDBBean.historialVacio}">
+									<h:outputLabel
+										value="#{elemHist.fecha} - #{elemHist.responsable} - #{elemHist.descr}" />
+								</p:dataList>
+								<h:panelGrid
+									rendered="#{!verDetallesElementoCMDBBean.historialVacio}">
+									<h:outputLabel
+										value="No existen cambios para este elemento" />
+								</h:panelGrid>
+							</p:panel>
+						</p:panel>
+						<p:separator></p:separator>
+						<p:commandButton value="Ver Tareas Pendientes"></p:commandButton>
+					</pm:content>
+					<h:outputText value="#{gestionCMDBBean.selectedelem}" />
+				</h:form>
+			</pm:content>
+		</pm:view>
+
+		<!-- VISTA HISTORIAL ELEMENTO CMDB -->
+		<pm:view id="vistaElementoHistorialCMDB" swatch="c">
+			<pm:header title="ACCSA">
+				<f:facet name="left">
+					<p:button value="Back" icon="back" href="pm:vistaElementoCMDB" />
+				</f:facet>
+				<f:facet name="right">
+					<p:button value="Cerrar Sesion" icon="gear"
+						href="#main?reverse=true" />
+				</f:facet>
+			</pm:header>
+			<pm:content>
+				<!-- pegate esta ro -->
+				<h:form id="historialForm">
+
+				</h:form>
+			</pm:content>
+		</pm:view>
+
+	</pm:page>
+</f:view>
+
+
+

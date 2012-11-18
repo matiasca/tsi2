@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/pis2012fing/!svn/ver/469/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb
+END
+IMovimiento.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/pis2012fing/!svn/ver/313/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/IMovimiento.java
+END
+IUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/416/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/IUsuario.java
+END
+ILogin.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/pis2012fing/!svn/ver/301/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/ILogin.java
+END
+IArchivo.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/468/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/IArchivo.java
+END
+ITarea.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/pis2012fing/!svn/ver/441/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/ITarea.java
+END
+IGrupo.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/pis2012fing/!svn/ver/460/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/IGrupo.java
+END
+ICategoria.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/pis2012fing/!svn/ver/432/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/ICategoria.java
+END
+IReporte.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/399/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/IReporte.java
+END
+ICliente.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pis2012fing/!svn/ver/416/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/ICliente.java
+END
+ICMDB.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/pis2012fing/!svn/ver/469/trunk/primefacesTest/src/main/java/uy/com/arnaldocastro/servicedesk/serviciosweb/ICMDB.java
+END

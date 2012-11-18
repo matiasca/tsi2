@@ -1,0 +1,137 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<link rel="stylesheet"
+		href="#{request.contextPath}/css/template-style.css" type="text/css" />
+
+	<script type="text/javascript">
+
+		function limpiarForm()
+			{       
+				$('.Name').attr('value', '');
+			}
+	</script>
+
+	<p:panel size="100"
+		style="margin: 0px auto 0 auto ;height: 100px;width:900px;background: url(imagenes/fondoHeader.jpg) ;">
+		<h:outputLabel style="font-size:30px"
+			value="Bienvenido a Arnaldo C.Castro S.A." />
+	</p:panel>
+</h:head>
+
+<h:body>
+
+<!--	<p:panel id="panelLogin"
+		style="height: auto; margin: 0 auto;position: relative; min-height: 100%;width: 900px;"> -->
+	<p:panel id="panelLogin"
+	style="height: auto; margin: 0 auto auto auto; min-height: 100%;width: 900px;">
+
+		<h:form>
+
+			<p:panel id="panelLogin"
+				style="margin:60px auto; width: 300px; height: 200px;">
+
+
+				<p:growl id="errores" style="left:200px" />
+
+				<h:panelGrid columns="1" style="margin-top:20px">
+					<h:outputLabel for="usuario" value="Email: " />
+					<p:inputText id="usuario" value="#{loginBean.usuario}"
+						styleClass="UserName" required="true"
+						requiredMessage="Debe ingresar su email."
+						validatorMessage="Mail inválido." style="width:290px">
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</p:inputText>
+
+
+					<h:outputLabel for="contrasenia" value="Contraseña: " />
+					<p:inputText id="contrasenia" type="password"
+						value="#{loginBean.contrasena}" required="true"
+						requiredMessage="Debe ingresar su contraseña." styleClass="Name"
+						style="width:290px" />
+
+				</h:panelGrid>
+
+				<p:commandButton id="btnLogin" value="iniciar" update="errores"
+					styleClass="buttonLogin" action="#{loginBean.iniciarSesion}"
+					oncomplete="limpiarForm()" style="margin-top:25px" />
+
+				<h:outputLink value="javascript:void(0)"
+					style="margin-left:55px; color:#AAAAAA;" onclick="oppenDialog()">
+					<h:outputText value="¿Olvido su contraseña?" />
+				</h:outputLink>
+
+				<p:blockUI block="panelLogin" trigger="btnLogin">  
+			        Cargando<br />
+					<p:graphicImage value="/imagenes/ajax-loader.gif" />
+				</p:blockUI>
+
+
+			</p:panel>
+		</h:form>
+		<h:form>
+			<p:blockUI block="olvidoPass" trigger="botonReseteo">  
+			        Enviando...<br />
+				<p:graphicImage value="/imagenes/ajax-loader.gif" />
+			</p:blockUI>
+			<p:growl id="errores2" style="left:200px" />
+			
+
+			<p:dialog id="olvidoPass" widgetVar="olvidoPass" resizable="false"
+				closable="false" width="350" position="490,130"  height="200" modal="true">
+
+
+
+				<p:panel>
+					<h:panelGrid columns="1" style="height:200; margin:auto">
+						<h:outputText value="¿Desea resetear su contraseña?" />
+						<h:outputText value="La nueva contraseña sera enviada a su mail" />
+						<h:outputLabel value="Ingrese un email: " />
+						<p:inputText id="mailforreset" styleClass="mailforreset"
+							value="#{loginBean.mailForReset}" required="true"
+							requiredMessage="Debe ingresar su email."
+							style="width:300px; margin:auto"
+							validatorMessage="Mail inválido.">
+							<f:validateRegex
+								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						</p:inputText>
+						<h:panelGrid columns="2" style="margin:5px auto">
+							<p:commandButton onsuccess="checkVal()" id="botonReseteo"
+								action="#{loginBean.resetearPassword}" value="Aceptar"
+								update="errores2">
+							</p:commandButton>
+							<p:commandButton onclick="olvidoPass.hide()" value="Cancelar">
+							</p:commandButton>
+						</h:panelGrid>
+					</h:panelGrid>
+				</p:panel>
+			</p:dialog>
+
+		</h:form>
+
+
+	</p:panel>
+</h:body>
+
+<script type="text/javascript">
+   var clickenlink=false;
+	function checkVal(){
+		
+		var ptr= "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]";
+		var value= $('.mailforreset').val();
+		if (value.match(ptr)){
+			olvidoPass.hide();
+		}
+	}
+
+	function oppenDialog(){
+		olvidoPass.show();		
+	}
+</script>
+</html>
+

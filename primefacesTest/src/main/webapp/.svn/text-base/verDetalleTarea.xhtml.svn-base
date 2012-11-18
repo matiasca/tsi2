@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Detalles de Tarea</ui:define>
+	<ui:define name="body">
+
+
+
+		<link rel="stylesheet"
+			href="#{request.contextPath}/css/site_clientes.css" type="text/css" />
+
+
+
+
+
+		<h:form id="form34">
+
+			<script type="text/javascript">
+				function limpiarForm(){        				
+						$('.Name').attr('value','');
+				}
+
+				function obtenertipo(){
+					var columnas=$('.historial tr.ui-state-highlight').children();
+					var tipo= $(columnas[1]).text();
+					
+					if (tipo == "Movimiento")
+						dialogoDetalleMovimiento.show();
+				}
+			</script>
+
+
+			<p:panel id="panel34" header="Detalles de Tarea"
+				style="margin-bottom:10px;">
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel for="cliente" value="Cliente: "
+							style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.cliente}" />
+
+						<h:outputLabel for="usuario" value="Usuario: "
+							style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.usuario}" />
+
+
+						<h:outputLabel for="tipo" value="Tipo:" style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.tipo}" />
+
+						<h:outputText value="Prioridad: " style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.prioridad}" />
+
+					</h:panelGrid>
+
+					<h:panelGrid columns="2" cellpadding="5" >
+
+						<h:outputLabel for="clasificacion" value="Clasificación: "
+							style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.categoria}" />
+
+
+						<h:outputLabel for="grupo" value="Grupo:" style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.grupo}" />
+
+
+
+						<h:outputLabel for="responsable" value="Responsable: "
+							style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.responsable}" />
+
+						<h:outputLabel for="estado" value="Estado: "
+							style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.estado}" />
+
+
+					</h:panelGrid>
+					<p:spacer width="300" height="10" />
+					<p:commandButton value="Editar" id="editarTarea" rendered="#{!detalleTareaBean.estaFinalizada}"
+						onclick="dialogoEditar.show();" />
+
+				</h:panelGrid>
+
+
+
+
+
+
+				<p:separator id="separator2" />
+
+
+				<h:panelGrid id="grid2" columns="2" cellpadding="10">
+					<h:outputLabel for="asunto" value="Asunto: "
+						style="font-weight:bold" />
+					<h:outputLabel value="#{detalleTareaBean.asunto}" />
+
+
+					<h:outputLabel for="descripcion" value="Descripcion: "
+						style="font-weight:bold" />
+					<h:outputLabel value="#{detalleTareaBean.descripcion}" />
+
+				</h:panelGrid>
+
+				<h:outputLabel value="Historial: " style="font-weight:bold" />
+
+				<p:dataTable id="tbTareasPendient" styleClass="historial"
+					value="#{detalleTareaBean.historial}"
+					rowKey="#{row}" var="row" rows="10"
+					paginator="true" paginatorPosition="bottom" selectionMode="single"
+					emptyMessage="Historial Vacio." selection="#{detalleTareaBean.movimiento}">
+					<p:ajax event="rowSelect" 
+						 listener="#{detalleTareaBean.onRowSelect}" 
+						 oncomplete="obtenertipo()" 
+						update=":panelverDetallesMovimiento" />
+
+					<p:column headerText="Fecha">
+						<h:outputText value="#{row.fecha}" />
+					</p:column>
+
+					<p:column headerText="Tipo">
+						<h:outputText value="#{row.tipo}" />
+					</p:column>
+
+					<p:column headerText="Autor">
+						<h:outputText value="#{row.autor}" />
+					</p:column>
+
+					<p:column headerText="Descripcion">
+						<h:outputText value="#{row.descripcion}" />
+					</p:column>
+
+				</p:dataTable>
+
+
+			</p:panel>
+
+			<p:growl id="growlTarea" />
+
+			<p:commandButton value="Volver" id="btnAll2" action="homeTecnico" />
+
+
+		</h:form>
+		<h:form>
+			<p:commandButton value="Descargar archivo"
+				rendered="#{detalleTareaBean.tieneArchivo}" ajax="false"
+				actionListener="#{detalleTareaBean.descargarArchivo}">
+				<p:fileDownload value="#{detalleTareaBean.archivo}" />
+			</p:commandButton>
+		</h:form>
+
+
+		<!--  DIALOGO PARA DETALLES DE MOVIMIENTO -->
+
+		<p:dialog id="dialogoDetalleMovimiento" header="Detalles Movimento" visible="false"
+			widgetVar="dialogoDetalleMovimiento" resizable="false"
+			showEffect="clip" modal="true" hideEffect="clip">
+
+
+			<p:panel id="panelverDetallesMovimiento" style="margin-bottom:10px"
+				columns="2">
+				<p:panelGrid columns="2" cellpadding="5" styleClass="gridreporte">
+					<p:panelGrid id="aux" columns="2" cellpadding="5"
+						styleClass="gridreporte">
+
+						<h:outputLabel value="Autor:" style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.movimientoAutor}"
+							style="font-weight:bold" />
+
+						<h:outputLabel value="Fecha Inicio:" style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.fechaMovimientoInicio}"
+							style="font-weight:bold" />
+						<h:outputLabel value="Fecha Fin:" style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.fechaMovimientoFin}"
+							style="font-weight:bold" />
+
+						<h:outputLabel value="Descripción:" style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.descripcionMovimiento}"
+							style="font-weight:bold" />
+
+
+					</p:panelGrid>
+					<h:form>
+						<p:commandButton value="Descargar archivo adjunto" ajax="false" rendered="#{detalleTareaBean.tieneArchivoMovimiento}"
+							actionListener="#{detalleTareaBean.descargarArchivo}">
+							<p:fileDownload value="#{detalleTareaBean.archivo}" />
+						</p:commandButton>
+					</h:form>
+
+				</p:panelGrid>
+				
+					<p:commandButton value="Volver"  
+						onclick="dialogoDetalleMovimiento.hide()" />
+				
+			
+			</p:panel>
+
+		</p:dialog>
+
+		<h:form>
+			<p:spacer width="350" height="10" />
+			<p:commandButton value="Agregar Movimiento" rendered="#{!detalleTareaBean.estaFinalizada}"
+				onclick="dialogoMovimiento.show(); " immediate="true" />
+			<p:spacer width="10" />
+			<p:commandButton value="Cambio" onclick="dialogoCambio.show();" rendered="#{!detalleTareaBean.estaFinalizada}"
+				immediate="true" actionListener="#{cambioElementoBean.listarElementos()}" update=":formCambio:gridCambio"/>
+			<p:commandButton value="Finalizar"  rendered="#{!detalleTareaBean.estaFinalizada}"
+				 onclick="dialogoFinalizar.show();"
+				immediate="true" />
+
+
+			<!--  DIALOGO PARA AGREGAR MOVIMIENTO -->
+			<p:dialog id="dialogoMovimiento" header="Nuevo Movimiento"
+				widgetVar="dialogoMovimiento" resizable="false" showEffect="clip"
+				modal="true" hideEffect="clip">
+
+
+
+				<h:panelGrid id="gridMov" columns="1" cellpadding="40">
+
+					<h:outputLabel for="descripcion" value="Descripción: *"
+						required="true" style="font-weight:bold" />
+					<p:inputTextarea id="descripcion"
+						value="#{movimientoBean.descripcion}" styleClass="Name" rows="6"
+						cols="75" required="true"
+						requiredMessage="Debe ingresar una descripción." />
+
+
+					<h:outputLabel value="Archivo: " />
+
+
+					<h:form enctype="multipart/form-data">
+						<p:growl id="growlLogo"/>
+						<p:fileUpload
+							fileUploadListener="#{movimientoBean.uploadArchivo}"
+							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="100000"
+							invalidFileMessage="Fichero inválido"
+							invalidSizeMessage="Ha excedido el tamaño máximo permitido"
+							label="Seleccionar archivo" update="growlLogo"
+							cancelLabel="Cancelar" uploadLabel="Subir" />
+					</h:form>
+
+
+				</h:panelGrid>
+
+				<p:separator id="separator" />
+
+				<h:panelGrid id="gridMov2" columns="1" cellpadding="10">
+
+					<h:outputLabel for="fechaInicio" value="Fecha inicio *"
+						required="true" style="font-weight:bold" />
+
+					<p:calendar value="#{movimientoBean.fechaInicio}"
+						pattern="dd/MM/yyyy HH:mm" required="true"
+						requiredMessage="Debe ingresar la fecha de inicio." />
+
+					<h:outputLabel for="fechaFin" value="Fecha fin *"
+						style="font-weight:bold" />
+
+					<p:calendar value="#{movimientoBean.fechaFin}"
+						pattern="dd/MM/yyyy HH:mm" required="true"
+						requiredMessage="Debe ingresar la fecha de fin" />
+
+				</h:panelGrid>
+
+				<p:commandButton value="Volver" id="bvolver" immediate="true"
+					onclick="dialogoMovimiento.hide();" />
+				<p:spacer width="350" height="10" />
+
+				<p:commandButton value="Crear" id="btnAll22" 
+					update="growlMovimiento :form34:panel34 gridMov2"
+					action="#{movimientoBean.crearMovimiento()}" />
+				<p:growl id="growlMovimiento" />
+			</p:dialog>
+			<!--  DIALOGO PARA AGREGAR MOVIMIENTO -->
+
+
+
+		</h:form>
+
+		<h:form id="formCambio" enctype="multipart/form-data">
+
+			<!--  DIALOGO PARA AGREGAR CAMBIO -->
+			<p:dialog id="dialogoCambio" header="Nuevo Cambio"
+				widgetVar="dialogoCambio" resizable="false" showEffect="clip"
+				modal="true" hideEffect="clip">
+
+
+
+				<h:panelGrid id="gridCambio" columns="1" cellpadding="40">
+
+					<h:outputLabel value="Seleccionar Elemento: " />
+					<p:selectOneMenu id="grupo" value="#{cambioElementoBean.elemento}"
+						effect="fade" style="width:200px" required="true"
+						requiredMessage="Debe ingresar un elemento.">
+						<f:selectItem itemLabel="Elija uno" itemValue="" />
+						<f:selectItems value="#{cambioElementoBean.listaElementos}" 
+							var="elem" itemLabel="#{elem.codigo} - #{elem.descripcion}"
+							itemValue="#{elem.codigo}"/>
+
+					</p:selectOneMenu>
+
+					<h:outputLabel value="Descripción del cambio: *"
+						required="true" style="font-weight:bold" />
+					<p:inputTextarea id="descripcion" value="#{cambioElementoBean.descripcion}"
+						styleClass="Name" rows="6" cols="75" required="true"
+						requiredMessage="Debe ingresar una descripción." />
+
+
+					<h:outputLabel value="Archivo: " />
+
+
+					<p:growl id="growlArch"/>
+					<p:fileUpload fileUploadListener="#{cambioElementoBean.uploadArchivo}"
+						allowTypes="/(\.|\/)(bmp|txt|xls|docx|doc|odf|pdf|gif|jpe?g|png)$/"
+						sizeLimit="100000" invalidFileMessage="fichero inválido"
+						invalidSizeMessage="Ha excedido el tamaño máximo permitido"
+						label="Seleccionar archivo" update="growlArch"
+						cancelLabel="Cancelar" uploadLabel="Subir" />
+
+
+				</h:panelGrid>
+
+				<p:separator id="separator" />
+
+				<h:panelGrid id="gridMov2" columns="1" cellpadding="10">
+
+					<h:outputLabel value="Fecha inicio *" style="font-weight:bold" />
+
+					<p:calendar value="#{cambioElementoBean.fechaInicio}"
+						pattern="dd/MM/yyyy HH:mm" required="true"
+						requiredMessage="Debe ingresar la fecha de inicio." />
+
+					<h:outputLabel value="Fecha fin *" style="font-weight:bold" />
+
+					<p:calendar value="#{cambioElementoBean.fechaFin}"
+						pattern="dd/MM/yyyy HH:mm" required="true"
+						requiredMessage="Debe ingresar la fecha de fin" />
+
+				</h:panelGrid>
+
+				<p:commandButton value="Volver" id="bvolver"
+					onclick="dialogoCambio.hide();" immediate="true" />
+				<p:spacer width="350" height="10" />
+
+				<p:commandButton value="Crear" update="growlCambio"
+					action="#{cambioElementoBean.crearCambio()}" />
+				<p:growl id="growlCambio" />
+			</p:dialog>
+
+
+		</h:form>
+
+
+
+		<h:form enctype="multipart/form-data">
+			<!--  DIALOGO PARA Finalizar -->
+
+			<p:dialog id="dialogoFinalizar" header="Finalizar"
+				widgetVar="dialogoFinalizar" resizable="false" showEffect="clip"
+				modal="true" hideEffect="clip">
+
+
+
+				<h:panelGrid id="gridFin" columns="1" cellpadding="40">
+
+					<h:outputLabel for="solucion" value="Solución: *" required="true"
+						style="font-weight:bold" />
+					<p:inputTextarea id="solucion"
+						value="#{finalizarTareaBean.solucion}" styleClass="Name" rows="6"
+						cols="75" required="true"
+						requiredMessage="Debe ingresar una descripción." />
+
+
+					<h:outputLabel value="Archivo: " />
+
+
+					<p:growl id="growlArch" showDetail="true" />
+					<p:fileUpload fileUploadListener="#{finalizarTareaBean.uploadArchivo}"
+						allowTypes="/(\.|\/)(bmp|txt|xls|docx|doc|odf|pdf|gif|jpe?g|png)$/"
+						sizeLimit="100000" invalidFileMessage="fichero inválido"
+						invalidSizeMessage="Ha excedido el tamaño máximo permitido"
+						label="Seleccionar archivo" update="growlArch"
+						cancelLabel="Cancelar" uploadLabel="Subir" />
+
+
+
+				</h:panelGrid>
+
+				<p:separator id="separator" />
+
+				<h:panelGrid id="gridFin2" columns="1" cellpadding="10">
+
+					<h:outputLabel for="fechaInicio" value="Fecha inicio *"
+						required="true" style="font-weight:bold" />
+
+					<p:calendar value="#{finalizarTareaBean.fechaInicio}"
+						pattern="dd/MM/yyyy HH:mm" required="true"
+						requiredMessage="Debe ingresar la fecha de inicio." />
+
+					<h:outputLabel for="fechaFin" value="Fecha fin *"
+						style="font-weight:bold" />
+
+					<p:calendar value="#{finalizarTareaBean.fechaFin}"
+						pattern="dd/MM/yyyy HH:mm" required="true"
+						requiredMessage="Debe ingresar la fecha de fin" />
+
+				</h:panelGrid>
+
+				<p:commandButton value="Volver" id="bvolver"
+					onclick="dialogoFinalizar.hide();" />
+				<p:spacer width="350" height="10" />
+
+				<p:commandButton value="Finalizar" id="btnAll22"
+					update="growlMovimiento"
+					actionListener="#{finalizarTareaBean.finalizar()}" />
+				<p:growl id="growlMovimiento" showDetail="true" />
+			</p:dialog>
+			<!--  DIALOGO PARA AGREGAR MOVIMIENTO -->
+
+
+
+		</h:form>
+
+
+
+		<h:form id="formEditar">
+			<!--            DIALOGO PARA MODIFICAR TAREA         -->
+			<p:dialog id="dialogoEditar" header="Modificar Tarea"
+				widgetVar="dialogoEditar" resizable="false" showEffect="clip"
+				modal="true" hideEffect="clip" closable="false">
+
+
+				<h:panelGrid columns="2" cellpadding="10" id="panelEditar">
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel value="Cliente: " style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.cliente}" />
+
+
+
+						<h:outputLabel value="Usuario: " style="font-weight:bold" />
+						<h:outputLabel value="#{detalleTareaBean.usuario}" />
+
+
+						<h:outputLabel value="Tipo:" style="font-weight:bold" />
+						<p:inplace id="tipo">
+							<p:selectOneMenu value="#{detalleTareaBean.tipo}"
+								style="width:130px">
+								<f:selectItem itemLabel="Incidente" itemValue="Incidente" />
+								<f:selectItem itemLabel="Pedido de cambio"
+									itemValue="Pedido de cambio" />
+							</p:selectOneMenu>
+						</p:inplace>
+
+						<h:outputText value="Prioridad: " style="font-weight:bold" />
+						<p:inplace id="prio">
+							<p:selectOneMenu value="#{detalleTareaBean.prioridad}"
+								style="width:130px">
+								<f:selectItem itemLabel="Alta" itemValue="Alta" />
+								<f:selectItem itemLabel="Media" itemValue="Media" />
+								<f:selectItem itemLabel="Baja" itemValue="Baja" />
+							</p:selectOneMenu>
+						</p:inplace>
+
+
+					</h:panelGrid>
+
+					<h:panelGrid columns="2" cellpadding="5">
+
+						<h:outputLabel value="Clasificación: " style="font-weight:bold" />
+						<p:inplace id="clas">
+							<p:selectOneMenu value="#{detalleTareaBean.categoria}"
+								style="width:200px">
+								<f:selectItem itemLabel="" itemValue="" />
+								<f:selectItems value="#{detalleTareaBean.listarCategorias()}" />
+							</p:selectOneMenu>
+						</p:inplace>
+
+
+						<h:outputLabel value="Grupo:" style="font-weight:bold" />
+						<p:inplace id="grup">
+							<p:selectOneMenu value="#{detalleTareaBean.grupo}"
+								style="width:200px">
+								<f:selectItem itemLabel="" itemValue="" />
+								<f:selectItems value="#{detalleTareaBean.listarGrupos()}" />
+							</p:selectOneMenu>
+						</p:inplace>
+
+						<h:outputLabel value="Responsable: " style="font-weight:bold" />
+						<p:inplace id="respons">
+							<p:selectOneMenu id="responsable"
+								value="#{detalleTareaBean.responsable}" effect="fade"
+								style="width:200px">
+								<f:selectItem itemLabel="" itemValue="" />
+								<f:selectItems
+									value="#{detalleTareaBean.listarTecnicosAdministradoresSuper()}"
+									var="resp" itemLabel="#{resp.mail}"
+									itemValue="#{resp.mail}"/>
+							</p:selectOneMenu>
+						</p:inplace>
+
+
+						<h:outputLabel value="Estado: " style="font-weight:bold" />
+						<p:inplace id="estado">
+							<p:selectOneMenu value="#{detalleTareaBean.estado}">
+								<f:selectItem itemLabel="Asignada" itemValue="Asignada" />
+								<f:selectItem itemLabel="Ingresada" itemValue="Ingresada" />
+								<f:selectItem itemLabel="Pendiente cliente"
+									itemValue="Pendiente cliente" />
+								<f:selectItem itemLabel="Solucionada" itemValue="Solucionada" />
+							</p:selectOneMenu>
+						</p:inplace>
+
+
+
+					</h:panelGrid>
+
+				</h:panelGrid>
+				<p:separator id="separa" />
+
+
+				<h:panelGrid id="grid" columns="2" cellpadding="10">
+					<h:outputLabel value="Asunto: " style="font-weight:bold" />
+					<h:outputLabel value="#{detalleTareaBean.asunto}" />
+
+
+					<h:outputLabel value="Descripcion: " style="font-weight:bold" />
+					<h:outputLabel value="#{detalleTareaBean.descripcion}" />
+
+				</h:panelGrid>
+
+				<p:growl id="growlModificar" showDetail="true" />
+
+				<p:commandButton value="Volver" immediate="true"
+					onclick="dialogoEditar.hide()" update="panelEditar"/>
+				<p:spacer width="400" height="10" />
+
+				<p:commandButton value="Guardar Cambios" id="btnAll7"
+					update="panelEditar growlModificar :form34:panel34" oncomplete="dialogoEditar.hide()"
+					actionListener="#{detalleTareaBean.modificarTarea}" />
+
+			</p:dialog>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

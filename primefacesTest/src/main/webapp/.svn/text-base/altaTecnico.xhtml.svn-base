@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Alta Tecnico</ui:define>
+	<ui:define name="body">
+
+		<h:form>
+		
+	
+			
+
+
+			<p:panel id="panelTecnico" header="Nuevo Técnico"
+				style="margin-bottom:10px;">
+				<p:blockUI block="panelTecnico" trigger="botoncrearTecnico">  
+			        Cargando<br />
+				<p:graphicImage value="/imagenes/ajax-loader.gif" />
+			</p:blockUI>
+				<p:panelGrid columns="2" cellpadding="5">
+
+					<h:outputLabel for="email" value="Email: *"
+						style="font-weight:bold" />
+					<p:inputText id="name" styleClass="Name"  style="width:200px"
+						value="#{usuarioBean.email}" required="true"
+						requiredMessage="Debe ingresar un email."
+						validatorMessage="Mail invalido">
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</p:inputText>
+
+					<h:outputLabel for="Tecnico" value="Grupo: "
+						style="font-weight:bold" />
+					<p:selectOneMenu value="#{usuarioBean.grupo}" style="width:200px">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems value="#{usuarioBean.listarGrupos()}" />
+					</p:selectOneMenu>
+
+					<p:growl id="growlTecnico" />
+
+					<p:commandButton value="Crear" id="botoncrearTecnico"
+						actionListener="#{usuarioBean.crearTecnico}" update="growlTecnico panelTecnico"
+						 />
+
+
+				</p:panelGrid>
+
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

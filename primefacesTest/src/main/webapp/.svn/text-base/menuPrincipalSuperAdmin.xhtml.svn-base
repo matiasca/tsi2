@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    			xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:p="http://primefaces.org/ui">   
+
+	<h:form>
+		<p:panelMenu style="width:200px;font-size:10px;font-weight:bold;" autoDisplay="true" multiple = "false">  
+			<p:menuitem value="Mis solicitudes" url="/faces/homeTecnico.xhtml"/>
+	        <p:submenu label="Administradores" autoDisplay="true">  
+	            <p:menuitem value="Nuevo" url="/faces/altaAdmin.xhtml" icon="ui-icon-plusthick"/>  
+	            <p:menuitem value="Eliminar" url="/faces/bajaAdministrador.xhtml"  icon="ui-icon-close" />	             
+	        </p:submenu>  
+	        <p:submenu label="Clientes">  
+	        	<p:menuitem value="Ver" url="/faces/verClientes.xhtml" icon="ui-icon-zoomin" />
+	            <p:menuitem value="Nuevo" url="/faces/altaCliente.xhtml" icon="ui-icon-plusthick" />
+	            <p:menuitem value="Eliminar" url="/faces/bajaCliente.xhtml" icon="ui-icon-close"/>  	            
+	        </p:submenu> 
+	        <p:submenu label="Técnicos">  
+	            <p:menuitem value="Nuevo" url="/faces/altaTecnico.xhtml"  icon="ui-icon-plusthick"/>
+	            <p:menuitem value="Eliminar" url="/faces/bajaTecnico.xhtml" icon="ui-icon-close"/>  	            
+	        </p:submenu>
+	        <p:submenu label="Usuarios">  
+	            <p:menuitem value="Nuevo" url="/faces/altaUsuario.xhtml" icon="ui-icon-plusthick"/>
+	            <p:menuitem value="Eliminar" url="/faces/bajaUsuario.xhtml"   icon="ui-icon-close"/>  
+	            <p:menuitem value="Modificar" action="#{menuSuperAdminBean.modificarUsuario}"  icon="ui-icon-pencil"/>
+	        </p:submenu>
+	        <p:submenu label="Categorias">  
+	        	<p:menuitem value="Nueva" url="/faces/altaCategoria.xhtml"  icon="ui-icon-plusthick"/>
+	            <p:menuitem value="Renombrar" url="/faces/renombrarCategoria.xhtml"  icon="ui-icon-pencil"/>  
+	        </p:submenu>     
+	        <p:submenu label="Grupos">  
+	            <p:menuitem value="Nuevo" url="/faces/altaGrupo.xhtml"  icon="ui-icon-plusthick"/>  
+	            <p:menuitem value="Eliminar" url="/faces/bajaGrupo.xhtml"   icon="ui-icon-close"/>
+	            <p:menuitem value="Modificar" url="/faces/modificarGrupo.xhtml"  icon="ui-icon-pencil"/>
+	        </p:submenu>   
+	        <p:submenu label="CMDB">  
+	            <p:menuitem value="Gestion" url="/faces/gestionCMDB.xhtml"  icon="ui-icon-plusthick"/>  
+	        </p:submenu>
+	        <p:submenu label="Reportes">  
+	            <p:menuitem value="Nuevo" url="/faces/reportes.xhtml" icon="ui-icon-plus"/>  
+	        </p:submenu>      
+	    </p:panelMenu>  	  
+	</h:form>
+	
+	<script type="text/javascript">
+		 $(document).ready(function(){
+			 var algo=$('body').children();
+			 $(algo[0]).css('min-height', '50px');
+			 
+			 
+		});
+	</script>
+
+	
+</ui:composition>

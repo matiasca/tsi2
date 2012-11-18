@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="256,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#login.xhtml:1" NAME="item1"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="homeUsuario::#homeUsuario.xhtml"
+    NAME="output" PATH="/homeUsuario.xhtml"
+    TARGET="rules:#homeUsuario.xhtml" TITLE="homeUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#login.xhtml:2" NAME="item2"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="homeTecnico::#homeTecnico.xhtml"
+    NAME="output" PATH="/homeTecnico.xhtml"
+    TARGET="rules:#homeTecnico.xhtml" TITLE="homeTecnico" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#*" PATH="/*" SHAPE="32,481,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:0" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="nuevaTarea2::#altaTarea.xhtml" NAME="output"
+    PATH="/altaTarea.xhtml" TARGET="rules:#altaTarea.xhtml"
+    TITLE="nuevaTarea2" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#homeTecnico.xhtml" PATH="/homeTecnico.xhtml"
+  SHAPE="496,193,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#homeTecnico.xhtml:0" NAME="item"
+   PATH="/homeTecnico.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="nuevoUsuario::#altaUsuario.xhtml"
+    NAME="output" PATH="/altaUsuario.xhtml"
+    TARGET="rules:#altaUsuario.xhtml" TITLE="nuevoUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#homeTecnico.xhtml:1" NAME="item1"
+   PATH="/homeTecnico.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="verDetalleTarea::#verDetalleTarea.xhtml"
+    NAME="output" PATH="/verDetalleTarea.xhtml"
+    TARGET="rules:#verDetalleTarea.xhtml" TITLE="verDetalleTarea" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#homeTecnico.xhtml:2" NAME="item2"
+   PATH="/homeTecnico.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="nuevoTecnico::#altaTecnico.xhtml"
+    NAME="output" PATH="/altaTecnico.xhtml"
+    TARGET="rules:#altaTecnico.xhtml" TITLE="nuevoTecnico" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#homeTecnico.xhtml:3" NAME="item3"
+   PATH="/homeTecnico.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="nuevoCliente::#altaCliente.xhtml"
+    NAME="output" PATH="/altaCliente.xhtml"
+    TARGET="rules:#altaCliente.xhtml" TITLE="nuevoCliente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#*:1" PATH="/*" SHAPE="32,593,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:1" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="nuevoAdmin::#altaAdmin.xhtml" NAME="output"
+    PATH="/altaAdmin.xhtml" TARGET="rules:#altaAdmin.xhtml"
+    TITLE="nuevoAdmin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#*:2" PATH="/*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:2" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cerrarSesion::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="cerrarSesion" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#*:3" PATH="/*" SHAPE="256,209,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:3" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="homeTecnico::#homeTecnico.xhtml"
+    NAME="output" PATH="/homeTecnico.xhtml"
+    TARGET="rules:#homeTecnico.xhtml" TITLE="homeTecnico" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#altaUsuario.xhtml" PATH="/altaUsuario.xhtml"
+  SHAPE="736,209,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#homeUsuario.xhtml" PATH="/homeUsuario.xhtml"
+  SHAPE="496,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#homeUsuario.xhtml:0" NAME="item"
+   PATH="/homeUsuario.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="homeUsuario::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="homeUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#altaAdmin.xhtml" PATH="/altaAdmin.xhtml"
+  SHAPE="240,609,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#altaCliente.xhtml" PATH="/altaCliente.xhtml"
+  SHAPE="736,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#altaTarea.xhtml" PATH="/altaTarea.xhtml"
+  SHAPE="240,497,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#altaTecnico.xhtml" PATH="/altaTecnico.xhtml"
+  SHAPE="736,385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#verDetalleTarea.xhtml"
+  PATH="/verDetalleTarea.xhtml" SHAPE="768,417,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#verDetalleTarea.xhtml:0" NAME="item"
+   PATH="/verDetalleTarea.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="homeTecnico::#homeTecnico.xhtml"
+    NAME="output" PATH="/homeTecnico.xhtml"
+    TARGET="rules:#homeTecnico.xhtml" TITLE="homeTecnico" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#verDetalleTarea.xhtml:1" NAME="item1"
+   PATH="/verDetalleTarea.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="verDetalles::#verDetalleTarea.xhtml"
+    NAME="output" PATH="/verDetalleTarea.xhtml"
+    TARGET="rules:#verDetalleTarea.xhtml" TITLE="verDetalles" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#*:4" PATH="/*" SHAPE="32,881,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:4" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="perfilUsuario::#perfilUsuario.xhtml"
+    NAME="output" PATH="/perfilUsuario.xhtml"
+    TARGET="rules:#perfilUsuario.xhtml" TITLE="perfilUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#*:5" PATH="/*" SHAPE="32,993,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:5" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="perfilTecnico::#perfilTecnico.xhtml"
+    NAME="output" PATH="/perfilTecnico.xhtml"
+    TARGET="rules:#perfilTecnico.xhtml" TITLE="perfilTecnico" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#perfilTecnico.xhtml"
+  PATH="/perfilTecnico.xhtml" SHAPE="240,1009,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#perfilUsuario.xhtml"
+  PATH="/perfilUsuario.xhtml" SHAPE="240,897,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

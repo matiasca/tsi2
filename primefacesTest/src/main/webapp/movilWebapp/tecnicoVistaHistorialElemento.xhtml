@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="ACCSA">
+		<pm:header title="ACCSA">
+			<f:facet name="left">
+				<p:button value="Back" icon="back" href="#main?reverse=true" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Cerrar Sesion" icon="gear" href="#main?reverse=true" />
+			</f:facet>
+		</pm:header>
+		<pm:content>
+			<p:button href="#main?reverse=true" icon="moco" value="Agregar Elemento" />
+			<p:panel header="Historial de Elemento">
+				<h:panelGrid columns="2">
+					<pm:field>
+						<h:outputLabel value="Elemento: " />
+					</pm:field>
+					<pm:field>
+						<h:outputLabel value="#{verDetallesElementoCMDBBean.codigoElemento}" />-->
+					</pm:field>
+					
+					<pm:field>
+						<h:outputLabel value="Fecha: " />
+					</pm:field>
+					<pm:field>
+						<h:outputLabel value="#{detalleTareaBean.usuario}" /> -->
+					</pm:field>
+	
+					<pm:field>
+						<h:outputLabel value="Responsable: " />
+					</pm:field>
+					<pm:field>
+						<h:outputLabel value="Nombre del responsable"/> <!-- #{detalleTareaBean.asunto}" /> -->
+					</pm:field>
+				</h:panelGrid>
+				<pm:field>
+					<h:outputLabel for="descripcion" value="Descripcion: " />
+				</pm:field>
+				<pm:field>	
+					<h:outputText value="descripcion de la tarea"/> <!-- #{detalleTareaBean.descripcion}" />  -->
+				</pm:field>
+			</p:panel>
+			<p:separator></p:separator>
+			<h:panelGrid columns="2">
+				<p:commandButton value="CMDB"></p:commandButton>			
+				<p:commandButton value="Ver Elemento"></p:commandButton>
+			</h:panelGrid>
+		</pm:content>
+	</pm:page>
+</f:view>

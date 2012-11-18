@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/ens/svn/repos/tsi210/!svn/ver/140/GeoRedUy-Web/WebContent/WEB-INF/lib
+END
+gcm-server.jar
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/ens/svn/repos/tsi210/!svn/ver/135/GeoRedUy-Web/WebContent/WEB-INF/lib/gcm-server.jar
+END
+gmaps4jsf-1.1.4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/ens/svn/repos/tsi210/!svn/ver/57/GeoRedUy-Web/WebContent/WEB-INF/lib/gmaps4jsf-1.1.4.jar
+END
+json-simple-1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/ens/svn/repos/tsi210/!svn/ver/140/GeoRedUy-Web/WebContent/WEB-INF/lib/json-simple-1.1.jar
+END
+primefaces-3.4.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/ens/svn/repos/tsi210/!svn/ver/101/GeoRedUy-Web/WebContent/WEB-INF/lib/primefaces-3.4.1.jar
+END

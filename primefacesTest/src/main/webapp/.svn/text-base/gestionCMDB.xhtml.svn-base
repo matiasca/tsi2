@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Gestion CMDB</ui:define>
+	<ui:define name="body">
+
+
+		<h:form id="idformCMDB">
+
+			<p:growl id="growlCMDB"  />
+
+			<h:panelGrid id="panelf" columns="1" cellpadding="50">
+						
+				<p:selectOneMenu id="clienteCMDB" value="#{gestionCMDBBean.cliente}"
+					effect="fade" style="width:200px">
+					<f:selectItem itemLabel="Elija uno" itemValue="" />
+					<f:selectItems value="#{clienteBean.listarClientes()}" />
+					<p:ajax process="clienteCMDB" update="panelf" event="change"
+						listener="#{gestionCMDBBean.actualizarDatostabla()}" />
+				</p:selectOneMenu>
+
+				
+				<p:panel id="panelCMDB"
+					rendered="#{gestionCMDBBean.showCMDBElements}"
+					style="margin-bottom:10px" columns="2">
+					<p:dataTable id="tablaElementosCMDBCLiente"
+						value="#{gestionCMDBBean.listaElementosCMDBCLiente}"
+						rowKey="#{elem.codigo}" var="elem" rows="10" paginator="true"
+						paginatorPosition="bottom" selectionMode="single" selection="#{sesionBean.elemento}"
+						emptyMessage="El cliente no tiene elementos en la CMDB"
+						>
+						
+						<p:ajax event="rowSelect"
+							listener="#{gestionCMDBBean.irVerDetalles}" />
+						
+						
+						<p:column headerText="Codigo">
+							<h:outputText value="#{elem.codigo}" />
+						</p:column>
+						<p:column headerText="Descripcion">
+							<h:outputText value="#{elem.descripcion}" />
+						</p:column>
+						<p:column headerText="Ubicacion">
+							<h:outputText value="#{elem.ubicacion}" />
+						</p:column>
+				
+				     
+
+					</p:dataTable>
+
+					<p:spacer width="500" height="10" />
+					<p:commandButton value="Agregar Elemento" id="btnAgregarElemento"
+						onclick="dialogoCMDBElementAgregar.show();" />
+
+				</p:panel>
+			</h:panelGrid>
+
+				
+				
+				
+				
+				<p:dialog id="dialogoCMDBElementAgregar" header="Agregar elemento"
+					widgetVar="dialogoCMDBElementAgregar" resizable="false" showEffect="clip"
+					modal="true" hideEffect="clip" dynamic="true">
+
+
+					<p:panel id="panelElementoNuevo" style="margin-bottom:10px" columns="2">
+						<h:panelGrid id="aux2" columns="2" cellpadding="5">
+
+							<h:outputLabel for="codElementoNuevo" value="Codigo: "
+								style="font-weight:bold" />
+
+							<p:inputText id="codElementoNuevo" required="true" requiredMessage="Debe de ingresar un código."
+								value="#{gestionCMDBBean.codigoElementoNuevo}" />
+
+							<h:outputLabel for="descrElementoNuevo" value="Descripcion:"
+								style="font-weight:bold" />
+
+							<p:inputText id="descrElementoNuevo" required="true" requiredMessage="Debe de ingresar una descripción."
+								value="#{gestionCMDBBean.descripcionElementoNuevo}" />
+
+							<h:outputLabel for="ubicElementoNuevo" value="Ubicacion:" required="true"
+								style="font-weight:bold" />
+
+							<p:inputText id="ubicElementoNuevo" required="true" requiredMessage="Debe de ingresar una ubicación"
+								value="#{gestionCMDBBean.ubicacionElementoNuevo}" />
+
+
+						</h:panelGrid>
+
+						<p:commandButton value="Volver"
+							onclick="dialogoCMDBElementAgregar.hide();" />
+						<p:spacer width="500" height="10" />
+						<p:commandButton value="Agregar" id="btnAgragarElem" update="panelCMDB panelElementoNuevo growlAgregarElemento"
+							actionListener="#{gestionCMDBBean.agragarElementoCMDB}"  />
+						<p:growl id="growlAgregarElemento"></p:growl>
+					</p:panel>
+				</p:dialog>
+				
+			
+				
+		</h:form>
+
+	</ui:define>
+</ui:composition>

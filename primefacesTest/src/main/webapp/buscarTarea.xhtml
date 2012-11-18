@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/masterTemplate.xhtml">
+
+	<ui:define name="title">Home</ui:define>
+	<ui:define name="body">
+
+
+
+	
+			
+
+
+		<h:form id="homeform">
+
+
+
+			<p:growl id="homegrowl" showDetail="true" />
+			
+			<p:separator id="separaador" />
+			<p:panel id="tablaTareas">
+				<p:dataTable id="tbTareasPendient2"
+					value="#{buscarTareaBean.listaTareas}" rowKey="#{row}" var="row"
+					rows="10" selection="#{tablaTareaBean.tareaSelecionada}"
+					paginator="true" paginatorPosition="bottom" selectionMode="single"
+					emptyMessage="No se encontraron resultados">
+					<p:ajax event="rowSelect"
+						listener="#{tablaTareaBean.irVerDetalles}" />
+					<f:facet name="header">
+					Seleccione la tarea que desea ver
+			
+				</f:facet>
+
+					<p:column headerText="Fecha">
+						<h:outputText value="#{row.fecha}" />
+					</p:column>
+
+					<p:column headerText="Cliente">
+						<h:outputText value="#{row.cliente}" />
+					</p:column>
+
+					<p:column headerText="Asunto">
+						<h:outputText value="#{row.asunto}" />
+					</p:column>
+
+					<p:column headerText="Estado">
+						<h:outputText value="#{row.estado}" />
+					</p:column>
+
+					<p:column headerText="Responsable">
+						<h:outputText value="#{row.responsable}" />
+					</p:column>
+					
+					<p:column headerText="Prioridad">
+						<h:outputText value="#{row.prioridad}" />
+					</p:column>
+					
+
+
+				</p:dataTable>
+
+			</p:panel>
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
